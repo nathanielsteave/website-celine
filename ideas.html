@@ -3,148 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ide Bisnis 2026 | FutureBiz</title>
+    <title>Katalog Ide Bisnis 2026 | FutureBiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Outfit', sans-serif; background-color: #020617; color: #f8fafc; }
+        body { font-family: 'Outfit', sans-serif; background-color: #020617; color: #f8fafc; opacity: 0; transition: opacity 0.6s ease; }
+        body.loaded { opacity: 1; }
         
-        /* Animasi Card */
-        .idea-card { 
-            background: rgba(30, 41, 59, 0.4); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            position: relative; 
-            overflow: hidden; 
-            cursor: pointer;
-        }
-        .idea-card:hover { 
-            border-color: #22d3ee; 
-            transform: translateY(-5px); 
-            background: rgba(30, 41, 59, 0.7);
-            box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.2); 
-        }
-
-        /* Glass Nav */
         .glass-nav { 
             background: rgba(2, 6, 23, 0.85); 
             backdrop-filter: blur(16px); 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
 
-        /* Modal Animation */
+        /* Filter Button Styles */
+        .filter-btn {
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(30, 41, 59, 0.4);
+            color: #94a3b8;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .filter-btn:hover {
+            background: rgba(30, 41, 59, 0.8);
+            color: white;
+            border-color: rgba(255,255,255,0.2);
+        }
+        .filter-btn.active {
+            background: rgba(34, 211, 238, 0.1);
+            color: #22d3ee;
+            border-color: #22d3ee;
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+        }
+
+        /* Bento Card Style */
+        .idea-card { 
+            background: rgba(30, 41, 59, 0.4); 
+            border: 1px solid rgba(255,255,255,0.08); 
+            backdrop-filter: blur(20px); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Card Hover Themes */
+        .theme-tech:hover { border-color: rgba(34, 211, 238, 0.6); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.2); transform: translateY(-4px); }
+        .theme-creative:hover { border-color: rgba(192, 132, 252, 0.6); box-shadow: 0 10px 40px -10px rgba(192, 132, 252, 0.2); transform: translateY(-4px); }
+        .theme-service:hover { border-color: rgba(250, 204, 21, 0.6); box-shadow: 0 10px 40px -10px rgba(250, 204, 21, 0.2); transform: translateY(-4px); }
+
+        .category-label {
+            font-size: 0.6rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        /* Modal Styles */
         #modal-overlay { transition: opacity 0.3s ease; }
         #modal-content { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .hidden-modal { opacity: 0; pointer-events: none; }
-        .hidden-modal #modal-content { transform: scale(0.9) translateY(20px); }
+        .hidden-modal #modal-content { transform: scale(0.95) translateY(20px); }
         .show-modal { opacity: 1; pointer-events: auto; }
         .show-modal #modal-content { transform: scale(1) translateY(0); }
+        
+        /* Hide Animation */
+        .hidden-card { display: none; }
+        .fade-in { animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-cyan-500 selection:text-black">
 
     <nav class="fixed w-full z-40 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold z-50">Future<span class="text-cyan-400">Biz</span>26</a>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold">
-                <a href="index.html" class="hover:text-cyan-400">Home</a>
-                <a href="trends.html" class="hover:text-cyan-400">Analisis Tren</a>
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-1 z-50">
+                Future<span class="text-cyan-400">Biz</span>26
+            </a>
+            <div class="hidden md:flex space-x-8 text-sm font-semibold items-center">
+                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
+                <a href="trends.html" class="hover:text-cyan-400 transition">Tips Sukses</a>
             </div>
-             <a href="index.html" class="md:hidden text-white focus:outline-none z-50 py-2">
+            <a href="index.html" class="md:hidden text-white p-2 z-50">
                 <i class="fas fa-arrow-left text-xl"></i>
             </a>
         </div>
     </nav>
 
-    <div class="pt-28 pb-10 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Ide <span class="text-cyan-400">Tanpa Modal</span></h1>
-            <p class="text-slate-400 text-sm md:text-base">Klik kartu untuk melihat strategi rahasianya.</p>
-        </div>
+    <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Ide Bisnis <span class="text-cyan-400">2026</span></h1>
+            
+            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
+                <button class="filter-btn active" onclick="filterSelection('all')">All</button>
+                <button class="filter-btn" onclick="filterSelection('tech')">Digital & AI</button>
+                <button class="filter-btn" onclick="filterSelection('creative')">Kreatif & Edukasi</button>
+                <button class="filter-btn" onclick="filterSelection('service')">Affiliate & Jasa</button>
+            </div>
+        </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pb-20">
-
-            <div class="idea-card p-6 rounded-2xl group" onclick="openModal('clipper')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-blue-600/20 p-3 rounded-lg text-blue-400 text-2xl"><i class="fas fa-video"></i></div>
-                    <span class="text-xs font-bold bg-slate-800 px-2 py-1 rounded text-slate-300">MUDAH</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="ideas-container">
+            
+            <div class="idea-card theme-tech p-6 rounded-3xl group filter-item tech" onclick="openModal('ai_agency')">
+                <div>
+                    <span class="category-label text-cyan-500">DIGITAL & AI</span>
+                    <div class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">AI Automation Agency</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Konsultan implementasi AI untuk perusahaan agar operasional lebih efisien.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Jasa Clipper Podcast</h3>
-                <p class="text-slate-400 text-sm mb-4">Potong video panjang jadi Shorts viral pakai AI.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="idea-card p-6 rounded-2xl group" onclick="openModal('curator')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-purple-600/20 p-3 rounded-lg text-purple-400 text-2xl"><i class="fas fa-layer-group"></i></div>
-                    <span class="text-xs font-bold bg-slate-800 px-2 py-1 rounded text-slate-300">LOW EFFORT</span>
+            <div class="idea-card theme-tech p-6 rounded-3xl group filter-item tech" onclick="openModal('clipper')">
+                <div>
+                    <span class="category-label text-cyan-500">DIGITAL & AI</span>
+                    <div class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Podcast Clipper</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Memotong video podcast panjang menjadi konten pendek viral menggunakan bantuan AI.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Content Curator</h3>
-                <p class="text-slate-400 text-sm mb-4">Rangkum isi podcast jadi Slide Carousel + Affiliate.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="idea-card p-6 rounded-2xl group" onclick="openModal('ai_agency')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-indigo-600/20 p-3 rounded-lg text-indigo-400 text-2xl"><i class="fas fa-robot"></i></div>
-                    <span class="text-xs font-bold bg-slate-800 px-2 py-1 rounded text-slate-300">HIGH SKILL</span>
+            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('edu_creator')">
+                <div>
+                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
+                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Edu Creator</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">"Productize Yourself". Ubah keahlian menjadi produk digital (E-book/Course).</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">AI Consultant</h3>
-                <p class="text-slate-400 text-sm mb-4">Bantu efisiensi perusahaan menggunakan AI.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="idea-card p-6 rounded-2xl group" onclick="openModal('affiliator')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-yellow-600/20 p-3 rounded-lg text-yellow-400 text-2xl"><i class="fas fa-shopping-bag"></i></div>
-                    <span class="text-xs font-bold bg-slate-800 px-2 py-1 rounded text-slate-300">ASET DIGITAL</span>
+            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('ghost')">
+                <div>
+                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
+                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Ghost Producer</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Mengelola konten dan strategi digital untuk para ahli yang malu tampil di kamera.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">TikTok Affiliator</h3>
-                <p class="text-slate-400 text-sm mb-4">Ubah belanjaan jadi konten & keranjang kuning.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="idea-card p-6 rounded-2xl group" onclick="openModal('youtuber')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-red-600/20 p-3 rounded-lg text-red-400 text-2xl"><i class="fab fa-youtube"></i></div>
-                    <span class="text-xs font-bold bg-slate-800 px-2 py-1 rounded text-slate-300">ADSENSE</span>
+            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('youtuber')">
+                <div>
+                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
+                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">YouTuber 2026</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Memanfaatkan algoritma baru YouTube yang memihak kreator kecil untuk personal branding.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">YouTuber 2026</h3>
-                <p class="text-slate-400 text-sm mb-4">Algoritma baru memihak kreator kecil & personal.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="idea-card p-6 rounded-2xl group border border-blue-500/30 bg-blue-900/10" onclick="openModal('edu_creator')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-blue-600/20 p-3 rounded-lg text-blue-400 text-2xl"><i class="fas fa-graduation-cap"></i></div>
-                    <span class="text-xs font-bold bg-blue-900 px-2 py-1 rounded text-blue-200">SUPER CUAN</span>
+            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('curator')">
+                <div>
+                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
+                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Content Curator</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Merangkum konten panjang jadi format slide/carousel + link affiliate di bio.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Edu Creator</h3>
-                <p class="text-slate-400 text-sm mb-4">Jual skill (E-book/Course). Margin 100% milikmu.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="idea-card p-6 rounded-2xl group" onclick="openModal('ghost')">
-                <div class="flex justify-between items-start mb-4">
-                    <div class="bg-slate-600/20 p-3 rounded-lg text-slate-400 text-2xl"><i class="fas fa-ghost"></i></div>
-                    <span class="text-xs font-bold bg-slate-800 px-2 py-1 rounded text-slate-300">JASA</span>
+            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('affiliator')">
+                <div>
+                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
+                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">TikTok Affiliator</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Mengubah pengeluaran belanja menjadi aset konten review dengan keranjang kuning.</p>
                 </div>
-                <h3 class="text-xl font-bold mb-2 text-white">Ghost Producer</h3>
-                <p class="text-slate-400 text-sm mb-4">Kelola konten expert lain di balik layar.</p>
-                <div class="text-cyan-400 text-xs font-bold flex items-center gap-1">
+                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
@@ -154,13 +219,12 @@
 
     <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden-modal transition-opacity duration-300">
         <div class="absolute inset-0" onclick="closeModal()"></div>
-
         <div id="modal-content" class="relative bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-700 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
             
             <div class="p-6 border-b border-slate-700 bg-slate-800/50 flex justify-between items-start">
                 <div>
                     <h2 id="m-title" class="text-2xl font-bold text-white mb-1">Judul Ide</h2>
-                    <span id="m-tag" class="text-xs font-bold bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20">TAG</span>
+                    <span id="m-tag" class="text-xs font-bold bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20">KATEGORI</span>
                 </div>
                 <button onclick="closeModal()" class="text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
                     <i class="fas fa-times"></i>
@@ -168,128 +232,141 @@
             </div>
 
             <div class="p-6 overflow-y-auto space-y-6">
-                
                 <div>
-                    <h4 class="text-sm font-bold text-slate-500 uppercase mb-2 tracking-wider">Konsep Utama</h4>
-                    <p id="m-desc" class="text-slate-300 leading-relaxed">Deskripsi akan muncul di sini.</p>
+                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Konsep Bisnis</h4>
+                    <p id="m-desc" class="text-slate-300 leading-relaxed text-sm">Deskripsi...</p>
                 </div>
 
-                <div class="bg-slate-800/50 p-4 rounded-xl border border-slate-700">
-                    <h4 class="text-sm font-bold text-cyan-400 uppercase mb-3 flex items-center gap-2">
-                        <i class="fas fa-list-ul"></i> Cara Eksekusi (Agusleo Halim)
+                <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase mb-3 flex items-center gap-2">
+                        <i class="fas fa-list-ul"></i> Langkah Memulai
                     </h4>
-                    <ul id="m-steps" class="space-y-3 text-sm text-slate-300">
-                        </ul>
+                    <ul id="m-steps" class="space-y-3 text-sm text-slate-300"></ul>
                 </div>
 
                 <div>
-                    <h4 class="text-sm font-bold text-slate-500 uppercase mb-2 tracking-wider">Tools Wajib</h4>
-                    <div id="m-tools" class="flex flex-wrap gap-2">
-                        </div>
+                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Tools Wajib</h4>
+                    <div id="m-tools" class="flex flex-wrap gap-2"></div>
                 </div>
-
-            </div>
-
-            <div class="p-4 border-t border-slate-700 bg-slate-950 text-center">
-                <p class="text-xs text-slate-500">"Konsisten dari jam 6 sore - 12 malam."</p>
             </div>
         </div>
     </div>
 
     <script>
-        // Database Ide (Sesuai Podcast Agusleo Halim)
+        document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
+
+        // Filter Logic
+        function filterSelection(category) {
+            const items = document.getElementsByClassName("filter-item");
+            const btns = document.getElementsByClassName("filter-btn");
+
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].classList.remove("active");
+                if (btns[i].getAttribute("onclick").includes(category)) {
+                    btns[i].classList.add("active");
+                }
+            }
+
+            for (let i = 0; i < items.length; i++) {
+                if (category === "all" || items[i].classList.contains(category)) {
+                    items[i].classList.remove("hidden-card");
+                    items[i].classList.add("fade-in");
+                } else {
+                    items[i].classList.add("hidden-card");
+                    items[i].classList.remove("fade-in");
+                }
+            }
+        }
+
+        // Data Ide Bisnis (Sesuai Podcast Agusleo Halim)
         const ideasData = {
-            "clipper": {
-                title: "Jasa Clipper Podcast",
-                tag: "GAMPANG",
-                desc: "Zaman sekarang kreator butuh 'Short-Form' untuk viral. Tugas kamu memotong podcast panjang mereka menjadi video pendek (Shorts/Reels) yang menarik.",
-                steps: [
-                    "Cari podcast yang viral (misal: Denny Sumargo/Agusleo).",
-                    "Copy link YouTube, masukkan ke <b>Gemini AI</b>.",
-                    "Minta Gemini: 'Carikan timestamp yang viral & lucu'.",
-                    "Download & potong bagian itu pakai CapCut/Opus Clip.",
-                    "Upload atau tawarkan jasanya ke YouTuber tersebut."
-                ],
-                tools: ["Gemini AI", "CapCut", "Opus Clip"]
-            },
-            "curator": {
-                title: "Content Curator",
-                tag: "LOW EFFORT",
-                desc: "Kamu tidak perlu membuat konten original. Cukup merangkum (curate) isi podcast orang lain menjadi format Carousel (Slide) atau Thread.",
-                steps: [
-                    "Tonton podcast daging (edukasi/bisnis).",
-                    "Rangkum 5 poin pentingnya.",
-                    "Buat desain slide simpel di Canva.",
-                    "Posting di TikTok (Photo Mode) atau LinkedIn.",
-                    "PENTING: Selalu berikan kredit ke sumber asli.",
-                    "Pasang link produk relevan (Lnk.id) di bio."
-                ],
-                tools: ["Canva", "ChatGPT", "Lnk.id"]
-            },
             "ai_agency": {
-                title: "AI Agency / Consultant",
-                tag: "HIGH VALUE",
-                desc: "Banyak perusahaan ingin pakai AI tapi bingung caranya. Kamu menjual 'SOP' atau 'Workflow' agar kerjaan mereka lebih cepat.",
+                title: "AI Automation Agency",
+                tag: "DIGITAL & AI",
+                desc: "Banyak perusahaan ingin menggunakan AI agar lebih efisien tapi tidak tahu caranya. Kamu hadir sebagai konsultan yang mengimplementasikan AI (seperti Chatbot atau Otomatisasi Data) ke dalam bisnis mereka.",
                 steps: [
-                    "Pelajari skill 'Prompt Engineering'.",
-                    "Cari masalah bisnis (misal: admin lambat balas chat).",
-                    "Buatkan solusi pakai AI (misal: auto-reply cerdas).",
-                    "Tawarkan jasa konsultasi atau setup biaya lumpsum (proyek)."
+                    "Pelajari 'Master Prompting' dan workflow AI.",
+                    "Tawarkan jasa audit efisiensi ke perusahaan.",
+                    "Charge biaya 'Lump Sum' (per proyek) untuk setup sistem.",
+                    "Bangun portofolio implementasi yang sukses."
                 ],
-                tools: ["ChatGPT Plus", "Midjourney", "Zapier"]
+                tools: ["ChatGPT", "Midjourney", "Zapier"]
             },
-            "affiliator": {
-                title: "TikTok Affiliator",
-                tag: "ASET DIGITAL",
-                desc: "Ubah pengeluaran jadi aset. Jangan cuma belanja, tapi review barang yang kamu beli agar menghasilkan uang kembali.",
+            "clipper": {
+                title: "Podcast Clipper",
+                tag: "DIGITAL & AI",
+                desc: "Konten video panjang (Long Form) butuh versi pendek (Shorts/Reels) untuk viral. Kamu menggunakan AI untuk mencari bagian menarik dan memotongnya.",
                 steps: [
-                    "Beli barang yang kamu butuhkan/suka.",
-                    "Buat video review jujur (tidak perlu estetik berlebihan).",
-                    "Sematkan 'Keranjang Kuning' (TikTok/Shopee).",
-                    "Konten review itu akan jadi aset yang bekerja 24 jam."
+                    "Copy URL video podcast YouTube.",
+                    "Paste ke <b>Gemini AI</b> untuk mencari timestamp viral.",
+                    "Gunakan Opus Clip atau CapCut untuk memotong video.",
+                    "Upload dan tawarkan jasa ini ke Podcaster."
                 ],
-                tools: ["HP Kamera", "TikTok Shop", "Shopee"]
-            },
-            "youtuber": {
-                title: "YouTuber (Small Creator)",
-                tag: "RELATIONSHIP",
-                desc: "Homepage YouTube sekarang memprioritaskan channel kecil. Ini kesempatan membangun hubungan personal dengan audiens (Parasocial Relationship).",
-                steps: [
-                    "Pilih 1 topik spesifik (Niche).",
-                    "Buat video yang 'relate' dan personal.",
-                    "Jangan pedulikan views awal, fokus pada retensi.",
-                    "Dapatkan uang dari AdSense setelah monetisasi."
-                ],
-                tools: ["YouTube Studio", "OBS", "Mic Murah"]
+                tools: ["Gemini AI", "Opus Clip", "CapCut"]
             },
             "edu_creator": {
                 title: "Edu Creator",
-                tag: "PROFIT 100%",
-                desc: "Tren 'Productize Yourself'. Ubah keahlianmu menjadi produk digital. Tidak ada modal barang (COGS), untung 100% masuk kantong.",
+                tag: "KREATIF",
+                desc: "Istilahnya 'Productize Yourself'. Ubah keterampilan spesifikmu menjadi produk digital (E-book, Course, Template) yang bisa dijual berkali-kali tanpa biaya produksi ulang.",
                 steps: [
-                    "Apa skill utamamu? (misal: Jago Excel/Masak).",
-                    "Tulis jadi E-book PDF atau rekam Video Course.",
-                    "Upload ke platform seperti Lnk.id.",
-                    "Promosikan lewat konten edukasi singkat.",
-                    "Sekali bikin, bisa dijual ribuan kali."
+                    "Identifikasi skill (misal: Excel, Coding, Masak).",
+                    "Buat materi dalam format PDF atau Video.",
+                    "Gunakan platform <b>Lnk.id</b> untuk menjualnya.",
+                    "Promosikan lewat konten edukasi singkat."
                 ],
-                tools: ["Lnk.id", "Google Docs", "Mayar/Trakteer"]
+                tools: ["Lnk.id", "Google Docs", "Canva"]
             },
             "ghost": {
                 title: "Ghost Producer",
-                tag: "JASA MAHAL",
-                desc: "Banyak ahli (dokter/pengacara) yang jago tapi malu depan kamera atau gaptek. Kamu jadi 'Produser Hantu' mereka.",
+                tag: "KREATIF",
+                desc: "Menjadi produser di balik layar untuk teman atau klien yang ahli di bidangnya tapi malu di depan kamera. Kamu yang mengurus strategi dan kontennya.",
                 steps: [
-                    "Cari teman yang jago di bidangnya tapi akun sosmednya sepi.",
-                    "Tawarkan kerjasama: 'Gue urus konten & strategi, lu tinggal ngomong'.",
-                    "Bagi hasil dari keuntungan produk digital/endorse.",
-                    "Kamu kerja di balik layar, mereka jadi wajahnya."
+                    "Cari expert (Dokter/Pengacara) yang sosmednya sepi.",
+                    "Tawarkan kerjasama bagi hasil.",
+                    "Kamu buatkan script dan planning konten.",
+                    "Mereka cukup ikuti arahanmu saat rekaman."
                 ],
                 tools: ["Notion", "Trello", "Social Blade"]
+            },
+            "youtuber": {
+                title: "YouTuber 2026",
+                tag: "KREATIF",
+                desc: "Algoritma YouTube Homepage sekarang memprioritaskan kreator kecil yang relevan. Ini kesempatan emas untuk membangun hubungan personal dengan audiens dan mendapat AdSense.",
+                steps: [
+                    "Pilih topik spesifik yang kamu suka.",
+                    "Buat video yang personal dan relate.",
+                    "Konsisten upload untuk memancing algoritma.",
+                    "Bangun interaksi di kolom komentar."
+                ],
+                tools: ["HP Kamera", "YouTube Studio", "OBS"]
+            },
+            "curator": {
+                title: "Content Curator",
+                tag: "AFFILIATE & JASA",
+                desc: "Tidak perlu buat konten original. Cukup rangkum (curate) poin-poin penting dari podcast orang lain menjadi format Carousel (Slide) atau Thread, lalu selipkan link affiliate.",
+                steps: [
+                    "Dengarkan podcast daging.",
+                    "Catat 5 poin utamanya.",
+                    "Buat desain slide simpel di Canva.",
+                    "Pasang link produk relevan (Lnk.id) di bio.",
+                    "Selalu beri kredit ke sumber asli."
+                ],
+                tools: ["Canva", "ChatGPT", "Lnk.id"]
+            },
+            "affiliator": {
+                title: "TikTok Affiliator",
+                tag: "AFFILIATE & JASA",
+                desc: "Ubah pengeluaran belanjamu menjadi aset. Buat video review jujur dari barang yang kamu beli sendiri, dan pasang keranjang kuning.",
+                steps: [
+                    "Beli barang yang memang kamu butuhkan.",
+                    "Buat video review sederhana tapi jujur.",
+                    "Sematkan link produk (TikTok/Shopee).",
+                    "Video itu jadi aset yang bekerja 24 jam."
+                ],
+                tools: ["TikTok Shop", "Shopee", "CapCut"]
             }
         };
 
-        // Logic Modal
         const modalOverlay = document.getElementById('modal-overlay');
         const mTitle = document.getElementById('m-title');
         const mTag = document.getElementById('m-tag');
@@ -300,32 +377,24 @@
         function openModal(id) {
             const data = ideasData[id];
             if(!data) return;
-
-            // Isi Data
             mTitle.innerText = data.title;
             mTag.innerText = data.tag;
             mDesc.innerText = data.desc;
-            
-            // Render List Steps
             mSteps.innerHTML = data.steps.map(step => 
                 `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-cyan-500 mt-1"></i> <span>${step}</span></li>`
             ).join('');
-
-            // Render Tools Tags
             mTools.innerHTML = data.tools.map(tool => 
                 `<span class="bg-slate-800 text-slate-300 px-3 py-1 rounded text-xs border border-slate-700">${tool}</span>`
             ).join('');
-
-            // Show Modal with Animation
             modalOverlay.classList.remove('hidden-modal');
             modalOverlay.classList.add('show-modal');
-            document.body.style.overflow = 'hidden'; // Disable scroll body
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             modalOverlay.classList.remove('show-modal');
             modalOverlay.classList.add('hidden-modal');
-            document.body.style.overflow = 'auto'; // Enable scroll body
+            document.body.style.overflow = 'auto';
         }
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analisis Tren 2026 | FutureBiz</title>
+    <title>Tren Bisnis 2026 | FutureBiz</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -28,16 +28,18 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* PENTING: Agar konten rapi atas-bawah */
-            height: 100%; /* PENTING: Agar tinggi seragam di grid */
-            min-height: 320px; /* Menjamin tinggi minimal */
+            justify-content: space-between; 
+            height: 100%; 
+            min-height: 280px; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
         /* Hover Effects */
-        .card-cyan:hover { border-color: rgba(34, 211, 238, 0.6); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.2); transform: translateY(-4px); }
-        .card-purple:hover { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.2); transform: translateY(-4px); }
-        .card-yellow:hover { border-color: rgba(250, 204, 21, 0.6); box-shadow: 0 10px 40px -10px rgba(250, 204, 21, 0.2); transform: translateY(-4px); }
-        .card-blue:hover { border-color: rgba(59, 130, 246, 0.6); box-shadow: 0 10px 40px -10px rgba(59, 130, 246, 0.2); transform: translateY(-4px); }
+        .card-cyan:hover { border-color: rgba(34, 211, 238, 0.6); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.25); transform: translateY(-4px); }
+        .card-green:hover { border-color: rgba(74, 222, 128, 0.6); box-shadow: 0 10px 40px -10px rgba(74, 222, 128, 0.25); transform: translateY(-4px); }
+        .card-pink:hover { border-color: rgba(244, 114, 182, 0.6); box-shadow: 0 10px 40px -10px rgba(244, 114, 182, 0.25); transform: translateY(-4px); }
+        .card-purple:hover { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.25); transform: translateY(-4px); }
+        .card-orange:hover { border-color: rgba(251, 146, 60, 0.6); box-shadow: 0 10px 40px -10px rgba(251, 146, 60, 0.25); transform: translateY(-4px); }
 
         .tag-pill {
             font-size: 0.6rem;
@@ -80,67 +82,84 @@
     <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
         <header class="mb-12 text-center md:text-left">
             <div class="inline-block px-3 py-1 mb-4 rounded-full border border-cyan-500/30 bg-cyan-900/20 text-cyan-300 text-xs font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(34,211,238,0.15)]">
-                Deep Dive Analysis
+                Market Outlook
             </div>
             <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                Di Balik Layar <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">Ekonomi Kreator 2026.</span>
+                Tren Utama <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">Bisnis 2026.</span>
             </h1>
             <p class="text-slate-400 max-w-2xl text-base md:text-lg leading-relaxed">
-                Klik kartu di bawah untuk melihat 4 pergeseran besar (Macro Trends) yang membuat ide-ide bisnis ini sangat menguntungkan.
+                Berdasarkan data pasar terbaru, inilah 5 sektor utama yang diprediksi akan mendominasi dan menghasilkan peluang terbesar di tahun 2026.
             </p>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
             
-            <div class="bento-card card-blue p-8 rounded-3xl md:col-span-2 group" onclick="openModal('productize')">
-                <div class="absolute top-0 right-0 bg-blue-600/10 w-64 h-64 blur-3xl rounded-full transition group-hover:bg-blue-600/20"></div>
+            <div class="bento-card card-cyan p-8 rounded-3xl md:col-span-2 group" onclick="openModal('ai')">
+                <div class="absolute top-0 right-0 bg-cyan-600/10 w-64 h-64 blur-3xl rounded-full transition group-hover:bg-cyan-600/20"></div>
                 
                 <div class="relative z-10">
                     <div class="flex justify-between items-start mb-6">
-                        <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 text-blue-400 text-2xl group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300">
-                            <i class="fas fa-cube"></i>
+                        <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400 text-2xl group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300">
+                            <i class="fas fa-microchip"></i>
                         </div>
-                        <span class="tag-pill bg-blue-500/10 text-blue-400 border border-blue-500/20">BIGGEST SHIFT</span>
+                        <span class="tag-pill bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">DOMINAN</span>
                     </div>
                     
-                    <h2 class="text-2xl md:text-3xl font-bold mb-3 text-white group-hover:text-blue-400 transition-colors">1. "Productize Yourself"</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">1. Digitalisasi & AI</h2>
                     <p class="text-slate-400 leading-relaxed text-sm md:text-base group-hover:text-slate-300 transition-colors">
-                        Pergeseran dari menjual "Jasa" (Tukar Waktu) menjadi menjual "Aset" (Produk Digital) yang bisa dijual berkali-kali.
+                        Pemanfaatan AI untuk pembuatan konten, konsultasi digital, dan otomatisasi bisnis.
                     </p>
                 </div>
                 
-                <div class="mt-6 text-blue-400 text-xs font-bold flex items-center gap-2 relative z-10 transition-all group-hover:gap-3 group-hover:text-blue-300">
-                    Lihat Analisis Lengkap <i class="fas fa-arrow-right"></i>
+                <div class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 relative z-10 transition-all group-hover:gap-3 group-hover:text-cyan-300">
+                    Lihat Peluang <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="bento-card card-cyan p-8 rounded-3xl group" onclick="openModal('algo')">
+            <div class="bento-card card-green p-8 rounded-3xl group" onclick="openModal('eco')">
                 <div class="relative z-10">
-                    <div class="mb-6 w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400 text-2xl group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300">
-                        <i class="fa-solid fa-users"></i>
+                    <div class="mb-6 w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center border border-green-500/20 text-green-400 text-2xl group-hover:bg-green-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-leaf"></i>
                     </div>
                     
-                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">2. Algoritma Merakyat</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-green-400 transition-colors">2. Keberlanjutan</h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6 group-hover:text-slate-300 transition-colors">
-                        YouTube & Sosmed 2026 memihak kreator kecil, bukan lagi artis TV. Kesempatan emas untuk pemula.
+                        Produk ramah lingkungan, <i>thrifting</i>, dan daur ulang semakin diminati.
                     </p>
                 </div>
 
-                <div class="mt-auto text-cyan-400 text-xs font-bold flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-cyan-300">
+                <div class="mt-auto text-green-400 text-xs font-bold flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-green-300">
                     Lihat Detail <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
 
-            <div class="bento-card card-purple p-8 rounded-3xl group" onclick="openModal('curation')">
+            <div class="bento-card card-pink p-8 rounded-3xl group" onclick="openModal('health')">
                 <div class="relative z-10">
-                    <div class="mb-6 w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 text-purple-400 text-2xl group-hover:bg-purple-500/20 group-hover:scale-110 transition-all duration-300">
-                        <i class="fas fa-filter"></i>
+                    <div class="mb-6 w-14 h-14 rounded-2xl bg-pink-500/10 flex items-center justify-center border border-pink-500/20 text-pink-400 text-2xl group-hover:bg-pink-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-heart"></i>
                     </div>
 
-                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">3. The Curation Economy</h3>
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-pink-400 transition-colors">3. Kesehatan & Wellness</h3>
                     <p class="text-slate-400 text-sm leading-relaxed mb-6 group-hover:text-slate-300 transition-colors">
-                        Nilai ekonomi berpindah dari "Membuat" menjadi "Memfilter & Merangkum" informasi penting.
+                        Makanan sehat, <i>meal prep</i>, dan perawatan hewan peliharaan (Pet Care).
+                    </p>
+                </div>
+
+                <div class="mt-auto text-pink-400 text-xs font-bold flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-pink-300">
+                    Lihat Detail <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="bento-card card-purple p-8 rounded-3xl group" onclick="openModal('creative')">
+                <div class="relative z-10">
+                    <div class="mb-6 w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20 text-purple-400 text-2xl group-hover:bg-purple-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-palette"></i>
+                    </div>
+
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-purple-400 transition-colors">4. Ekonomi Kreatif</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6 group-hover:text-slate-300 transition-colors">
+                        Konten kreator, <i>clipping</i> konten, desain digital, dan jasa niche.
                     </p>
                 </div>
 
@@ -149,24 +168,19 @@
                 </div>
             </div>
 
-            <div class="bento-card card-yellow p-8 rounded-3xl md:col-span-2 group" onclick="openModal('ghost')">
-                 <div class="absolute -right-10 -bottom-10 bg-yellow-500/10 w-40 h-40 blur-2xl rounded-full transition group-hover:bg-yellow-500/20"></div>
-                
+            <div class="bento-card card-orange p-8 rounded-3xl group" onclick="openModal('service')">
                 <div class="relative z-10">
-                    <div class="flex justify-between items-start mb-6">
-                        <div class="w-14 h-14 rounded-2xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20 text-yellow-400 text-2xl group-hover:bg-yellow-500/20 group-hover:scale-110 transition-all duration-300">
-                            <i class="fas fa-ghost"></i>
-                        </div>
-                        <span class="tag-pill bg-yellow-500/10 text-yellow-400 border border-yellow-500/20">HIGH TICKET</span>
+                    <div class="mb-6 w-14 h-14 rounded-2xl bg-orange-500/10 flex items-center justify-center border border-orange-500/20 text-orange-400 text-2xl group-hover:bg-orange-500/20 group-hover:scale-110 transition-all duration-300">
+                        <i class="fas fa-truck-fast"></i>
                     </div>
 
-                    <h3 class="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors">4. The Ghost Economy</h3>
-                    <p class="text-slate-400 leading-relaxed text-sm md:text-base group-hover:text-slate-300 transition-colors">
-                        Peluang besar menjadi "Arsitek di Balik Layar" untuk profesional (Dokter/CEO) yang malu depan kamera.
+                    <h3 class="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-orange-400 transition-colors">5. Kepraktisan</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed mb-6 group-hover:text-slate-300 transition-colors">
+                        Layanan antar kuliner, Jastip (Jasa Titip), dan fulfillment logistik.
                     </p>
                 </div>
 
-                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 relative z-10 transition-all group-hover:gap-3 group-hover:text-yellow-300">
+                <div class="mt-auto text-orange-400 text-xs font-bold flex items-center gap-2 transition-all group-hover:gap-3 group-hover:text-orange-300">
                     Lihat Detail <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
@@ -175,9 +189,8 @@
         
         <div class="mt-16 text-center border-t border-slate-800 pt-10">
             <p class="text-slate-500 text-sm italic">
-                "Zaman emas ini mungkin tidak selamanya. Mulai saat barrier-to-entry masih rendah."
+                "Peluang terbaik ada di irisan antara teknologi dan kebutuhan dasar manusia."
             </p>
-            <p class="text-cyan-500 text-xs font-bold mt-2 uppercase tracking-widest">- Agusleo Halim</p>
         </div>
     </div>
 
@@ -198,19 +211,15 @@
 
             <div class="p-6 overflow-y-auto space-y-6">
                 <div>
-                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Analisis Mendalam</h4>
+                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Detail Tren</h4>
                     <p id="m-desc" class="text-slate-300 leading-relaxed text-sm md:text-base">Deskripsi...</p>
                 </div>
 
                 <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
                     <h4 class="text-xs font-bold text-cyan-400 uppercase mb-3 flex items-center gap-2">
-                        <i class="fas fa-lightbulb"></i> Peluang Emas
+                        <i class="fas fa-lightbulb"></i> Ide Bisnis Spesifik
                     </h4>
                     <ul id="m-points" class="space-y-3 text-sm text-slate-300"></ul>
-                </div>
-
-                <div class="border-l-4 border-indigo-500 pl-4 py-2 bg-indigo-500/10 rounded-r-lg">
-                    <p id="m-quote" class="text-sm text-indigo-200 italic">"Quote here..."</p>
                 </div>
             </div>
         </div>
@@ -219,78 +228,75 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
 
-        // Data Tren (Berdasarkan Podcast Agusleo Halim)
+        // Data Tren 2026 Sesuai Gambar
         const trendsData = {
-            "productize": {
-                title: "\"Productize Yourself\"",
-                tag: "BIGGEST SHIFT",
-                desc: "Selama ini kita diajarkan menukar waktu dengan uang (Gaji/Jasa). Masalahnya, waktu kita terbatas 24 jam. Di 2026, tren utamanya adalah mengubah keahlian menjadi Produk Digital (Aset) yang bisa dijual berkali-kali tanpa produksi ulang.",
+            "ai": {
+                title: "Digitalisasi & AI",
+                tag: "TEKNOLOGI",
+                desc: "Integrasi kecerdasan buatan (AI) bukan lagi pilihan, tapi kebutuhan. Bisnis yang memanfaatkan AI untuk efisiensi dan kreasi akan memimpin pasar.",
                 points: [
-                    "<strong>Scalable:</strong> Bikin E-book sekali, bisa laku 10.000 copy tanpa kerja ekstra.",
-                    "<strong>Margin 100%:</strong> Tidak ada biaya bahan baku (COGS) seperti jualan fisik.",
-                    "<strong>Passive Income:</strong> Produk terjual bahkan saat kamu tidur."
-                ],
-                quote: "Skill kamu harus dijadikan produk, bukan cuma dijadikan jasa. Productize Yourself."
+                    "<strong>Pembuatan Konten:</strong> Gunakan AI untuk script, edit video, dan desain.",
+                    "<strong>Konsultasi Digital:</strong> Bantu UMKM beralih ke sistem digital.",
+                    "<strong>Otomatisasi:</strong> Chatbot CS dan manajemen data otomatis."
+                ]
             },
-            "algo": {
-                title: "Algoritma Merakyat",
-                tag: "PELUANG PEMULA",
-                desc: "Dulu, Homepage YouTube hanya untuk kreator besar. Sekarang, algoritma sengaja mencari dan mengangkat channel kecil yang relevan (Discovery Engine). Ini adalah momen terbaik untuk memulai dari nol.",
+            "eco": {
+                title: "Keberlanjutan (Sustainability)",
+                tag: "ECO-FRIENDLY",
+                desc: "Konsumen Gen-Z dan Milenial semakin sadar lingkungan. Mereka memilih produk yang etis, minim sampah, dan mendukung ekonomi sirkular.",
                 points: [
-                    "<strong>Video Recommendation:</strong> Video pertamamu bisa langsung viral jika retensinya bagus.",
-                    "<strong>Personal Connection:</strong> Audiens mencari sosok yang 'relate' dan nyata, bukan artis TV.",
-                    "<strong>Discovery:</strong> TikTok & YouTube Shorts memudahkan konten baru ditemukan."
-                ],
-                quote: "Jangan tunggu telat. Algoritma saat ini sedang memihak kepada 'Wong Cilik' (Kreator Kecil)."
+                    "<strong>Thrifting:</strong> Jual beli pakaian bekas berkualitas.",
+                    "<strong>Produk Ramah Lingkungan:</strong> Kemasan tanpa plastik, sedotan bambu.",
+                    "<strong>Daur Ulang:</strong> Mengubah limbah menjadi produk bernilai."
+                ]
             },
-            "curation": {
-                title: "The Curation Economy",
-                tag: "EFISIENSI",
-                desc: "Kita hidup di zaman 'Banjir Informasi'. Orang tidak butuh lebih banyak konten, mereka butuh konten yang sudah DIPILIH dan DIRANGKUM. Nilai ekonomi berpindah ke Kurator.",
+            "health": {
+                title: "Kesehatan & Kesejahteraan",
+                tag: "LIFESTYLE",
+                desc: "Pasca-pandemi, kesadaran akan kesehatan fisik dan mental terus meningkat. Orang rela bayar lebih untuk hidup lebih sehat.",
                 points: [
-                    "<strong>Clipper:</strong> Memotong bagian penting dari video panjang.",
-                    "<strong>Curator:</strong> Merangkum 10 berita menjadi 1 thread singkat.",
-                    "<strong>Value:</strong> Kamu menyelamatkan waktu orang lain. Itu yang dibayar."
-                ],
-                quote: "Di masa depan, orang yang jago merangkum (Synthesizer) akan lebih dicari daripada yang sekadar membuat."
+                    "<strong>Makanan Sehat:</strong> Katering diet, salad buah, jus murni.",
+                    "<strong>Meal Prep:</strong> Jasa penyiapan bahan masakan siap olah.",
+                    "<strong>Pet Care:</strong> Makanan sehat dan grooming untuk hewan peliharaan."
+                ]
             },
-            "ghost": {
-                title: "The Ghost Economy",
-                tag: "HIGH TICKET",
-                desc: "Banyak profesional (Dokter, Pengacara, CEO) yang ingin punya personal branding tapi tidak punya waktu atau gaptek. Mereka butuh 'Produser Hantu' di balik layar.",
+            "creative": {
+                title: "Ekonomi Kreatif & Jasa Personal",
+                tag: "CREATOR",
+                desc: "Permintaan akan konten digital dan layanan yang dipersonalisasi meledak. Ini adalah era bagi para kreator dan freelancer.",
                 points: [
-                    "<strong>Strategi:</strong> Kamu yang mengatur ide konten dan script.",
-                    "<strong>Produksi:</strong> Kamu yang mengedit dan memposting.",
-                    "<strong>Profit Share:</strong> Kamu mendapat bagi hasil dari bisnis yang masuk lewat sosmed mereka."
-                ],
-                quote: "Jadilah arsitek di balik kesuksesan orang lain. Bayarannya seringkali lebih mahal."
+                    "<strong>Konten Kreator:</strong> YouTuber, TikToker, Influencer Mikro.",
+                    "<strong>Clipping Konten:</strong> Jasa potong video panjang jadi shorts.",
+                    "<strong>Jasa Niche:</strong> Desain presentasi, penulisan caption, virtual assistant."
+                ]
+            },
+            "service": {
+                title: "Kemudahan & Kepraktisan",
+                tag: "SERVICE",
+                desc: "Masyarakat urban yang sibuk menginginkan segala sesuatu yang instan dan praktis. Layanan yang menghemat waktu sangat dicari.",
+                points: [
+                    "<strong>Cloud Kitchen:</strong> Bisnis kuliner khusus pesan antar (tanpa dine-in).",
+                    "<strong>Jastip (Jasa Titip):</strong> Membelikan barang dari event/luar negeri.",
+                    "<strong>Fulfillment:</strong> Jasa packing dan kirim untuk online shop."
+                ]
             }
         };
 
-        // Logic Modal
         const modalOverlay = document.getElementById('modal-overlay');
         const mTitle = document.getElementById('m-title');
         const mTag = document.getElementById('m-tag');
         const mDesc = document.getElementById('m-desc');
         const mPoints = document.getElementById('m-points');
-        const mQuote = document.getElementById('m-quote');
 
         function openModal(id) {
             const data = trendsData[id];
             if(!data) return;
-
-            // Inject Data
             mTitle.innerText = data.title;
             mTag.innerText = data.tag;
             mDesc.innerText = data.desc;
-            mQuote.innerText = data.quote;
-            
-            // Inject List
             mPoints.innerHTML = data.points.map(point => 
                 `<li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>${point}</span></li>`
             ).join('');
-
-            // Show Animation
             modalOverlay.classList.remove('hidden-modal');
             modalOverlay.classList.add('show-modal');
             document.body.style.overflow = 'hidden';
@@ -302,7 +308,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Link Transisi
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
                 if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {

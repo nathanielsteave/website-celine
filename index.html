@@ -34,51 +34,14 @@
             text-shadow: 0 0 30px rgba(34, 211, 238, 0.3); 
         }
 
-        /* Glass Nav yang Lebih Stabil */
         .glass-nav { 
             background: rgba(2, 6, 23, 0.85); 
             backdrop-filter: blur(16px); 
             border-bottom: 1px solid rgba(255,255,255,0.08); 
-            width: 100%; 
+            width: 100%;
             top: 0;
             left: 0;
             z-index: 50;
-        }
-        
-        /* TAMBAHKAN INI UNTUK ALIGNMENT */
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-        
-        /* Navbar alignment yang sama dengan konten utama */
-        .nav-aligned {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        /* Mobile menu button positioning */
-        @media (max-width: 768px) {
-            .mobile-btn-position {
-                position: relative;
-                right: -0.5rem; /* Disesuaikan sedikit ke kiri */
-            }
-        }
-        
-        /* Mobile menu tetap full width */
-        #mobile-menu {
-            left: 0;
-            right: 0;
-            margin: 0;
-            padding: 0;
         }
     </style>
 </head>
@@ -87,41 +50,27 @@
     <div class="blob bg-blue-600 w-64 h-64 rounded-full top-0 left-[-50px]"></div>
     <div class="blob bg-purple-600 w-64 h-64 rounded-full bottom-0 right-[-50px] animation-delay-2000"></div>
 
-    <!-- NAVBAR DENGAN POSISI YANG SESUAI KONTEN -->
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
-        <div class="nav-aligned py-4">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center w-full">
             
-            <!-- Logo - di kiri -->
             <a href="index.html" class="text-2xl font-bold tracking-tighter z-50 relative flex items-center gap-1 shrink-0">
                 Future<span class="text-cyan-400">Biz</span>26
             </a>
             
-            <!-- Desktop Menu - di tengah/kanan -->
+            <div class="hidden md:flex flex-1"></div>
+
             <div class="hidden md:flex space-x-8 text-sm font-semibold items-center">
-                <a href="trends.html" class="hover:text-cyan-400 transition">Analisis Tren</a>
-                <a href="ideas.html" class="hover:text-cyan-400 transition">7 Ide Bisnis</a>
+                <a href="trends.html" class="hover:text-cyan-400 transition">Tips Sukses</a>
+                <a href="ideas.html" class="hover:text-cyan-400 transition">Ide Bisnis</a>
                 <a href="tech.html" class="hover:text-cyan-400 transition">Tools AI</a>
                 <a href="ideas.html" class="px-6 py-2 rounded-full bg-cyan-500 hover:bg-cyan-400 text-slate-900 text-xs font-bold transition shadow-[0_0_20px_rgba(34,211,238,0.4)]">Mulai Tanpa Modal</a>
             </div>
 
-            <!-- Tombol Mobile - DIKEMBALIKAN KE POSISI SEBELAH LOGO -->
-            <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none z-50 p-2 rounded hover:bg-white/10 transition mobile-btn-position">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
+            </div>
+        </nav>
 
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden fixed inset-0 bg-[#020617] flex flex-col items-center justify-center space-y-8 text-xl font-bold transition-all duration-300 z-40 w-full h-screen">
-            <a href="trends.html" class="hover:text-cyan-400">Analisis Tren</a>
-            <a href="ideas.html" class="hover:text-cyan-400">Ide Bisnis</a>
-            <a href="tech.html" class="hover:text-cyan-400">Tools AI</a>
-            <a href="ideas.html" class="px-8 py-4 rounded-full bg-cyan-500 text-slate-900 text-base shadow-[0_0_20px_rgba(34,211,238,0.5)]">Mulai Sekarang</a>
-        </div>
-    </nav>
-
-    <!-- KONTEN UTAMA DENGAN CONTAINER YANG SAMA -->
-    <main class="min-h-[100dvh] flex items-center justify-center relative w-full">
-        <div class="content-container text-center w-full max-w-lg mt-16 md:mt-0">
+    <main class="min-h-[100dvh] flex items-center justify-center px-6 relative w-full">
+        <div class="text-center w-full max-w-lg mt-16 md:mt-0">
 
             <h1 class="text-5xl font-extrabold mb-6 leading-[1.15]">
                 Zaman Emas <br>
@@ -138,7 +87,7 @@
                 </a>
                 
                 <a href="trends.html" class="w-full py-4 bg-slate-800/50 border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800 rounded-xl font-bold transition active:scale-95 backdrop-blur-md text-slate-300 flex items-center justify-center gap-2">
-                    Pelajari Tren 2026 <i class="fas fa-arrow-right text-sm"></i>
+                    Trend Bisnis 2026 <i class="fas fa-arrow-right text-sm"></i>
                 </a>
             </div>
         </div>
@@ -146,35 +95,17 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
-
-        // Script Transisi
+        
+        // Script Transisi Halaman Saja (Logika Menu dihapus)
         document.querySelectorAll('a').forEach(link => {
-            if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
-                link.addEventListener('click', e => {
+            link.addEventListener('click', e => {
+                if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
                     e.preventDefault();
                     const target = link.href;
                     document.body.style.opacity = 0;
                     setTimeout(() => window.location.href = target, 500);
-                });
-            }
-        });
-
-        // Script Mobile Menu
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        let isMenuOpen = false;
-
-        btn.addEventListener('click', () => {
-            isMenuOpen = !isMenuOpen;
-            if (isMenuOpen) {
-                menu.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-                btn.innerHTML = '<i class="fas fa-times text-2xl text-cyan-400"></i>';
-            } else {
-                menu.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-                btn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
-            }
+                }
+            });
         });
     </script>
 </body>

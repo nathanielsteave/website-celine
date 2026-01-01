@@ -186,6 +186,20 @@
                 </div>
             </div>
 
+            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('writer')">
+                <div>
+                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
+                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Writing Services</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Menjual jasa pengolahan kata untuk mengubah ide menjadi tulisan profesional.</p>
+                </div>
+                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
             <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('curator')">
                 <div>
                     <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
@@ -208,6 +222,34 @@
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">TikTok Affiliator</h3>
                     <p class="text-slate-400 text-sm leading-relaxed">Mengubah pengeluaran belanja menjadi aset konten review dengan keranjang kuning.</p>
+                </div>
+                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('dropshipper')">
+                <div>
+                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
+                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Dropshipper</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Model jualan tanpa stok. Hanya meneruskan pesanan pembeli ke supplier.</p>
+                </div>
+                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('jastip')">
+                <div>
+                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
+                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                        <i class="fas fa-plane-departure"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Jastip</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Menjembatani jarak antara ketersediaan barang dan akses pembeli.</p>
                 </div>
                 <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
@@ -278,7 +320,7 @@
             }
         }
 
-        // Data Ide Bisnis (Sesuai Podcast Agusleo Halim)
+        // Data Ide Bisnis
         const ideasData = {
             "ai_agency": {
                 title: "AI Automation Agency",
@@ -364,6 +406,45 @@
                     "Video itu jadi aset yang bekerja 24 jam."
                 ],
                 tools: ["TikTok Shop", "Shopee", "CapCut"]
+            },
+            "dropshipper": {
+                title: "Dropshipper",
+                tag: "AFFILIATE & JASA",
+                desc: "Model jualan tanpa stok. Hanya meneruskan pesanan pembeli ke supplier. Supplier yang akan mengirim barang atas nama toko Anda.",
+                steps: [
+                    "Cari produk viral.",
+                    "Temukan supplier.",
+                    "Upload ke marketplace/e-commerce.",
+                    "Naikkan harga (profit).",
+                    "Buat konten promosi."
+                ],
+                tools: ["Marketplace/E-Commerce", "Marketplace Manager", "Canva"]
+            },
+            "jastip": {
+                title: "Jastip (Jasa Titip)",
+                tag: "AFFILIATE & JASA",
+                desc: "Bisnis ini bekerja dengan cara menjembatani jarak antara ketersediaan barang dan akses pembeli. Cocok untuk yang suka traveling atau hunting barang unik.",
+                steps: [
+                    "Riset lokasi dan barang.",
+                    "Siapkan media pemasaran.",
+                    "Unggah katalog & live report.",
+                    "Kumpulkan Pembayaran (DP/Full Payment).",
+                    "Belanja, Packing, & Kirim."
+                ],
+                tools: ["Whatsapp Business", "Mobile Banking", "Google Sheets"]
+            },
+            "writer": {
+                title: "Writing Services",
+                tag: "KREATIF & EDUKASI",
+                desc: "Menjual jasa pengolahan kata untuk mengubah ide atau data menjadi tulisan yang enak dibaca, profesional, dan memiliki nilai jual bagi klien.",
+                steps: [
+                    "Pilih Niche (Spesialisasi).",
+                    "Buat Portofolio (Sample).",
+                    "Tentukan Skema Harga.",
+                    "Cari Klien di Platform.",
+                    "Kerjakan & Minta Testimoni."
+                ],
+                tools: ["Google Docs", "KBBI/Grammarly", "ChatGPT"]
             }
         };
 

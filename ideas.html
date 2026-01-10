@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Ide Bisnis 2026 | VisioBus</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Katalog Ide Bisnis 2026 | VisioBus</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"
+            rel="stylesheet">
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            rel="stylesheet">
+        <style>
         body { font-family: 'Outfit', sans-serif; background-color: #020617; color: #f8fafc; opacity: 0; transition: opacity 0.6s ease; }
         body.loaded { opacity: 1; }
         
@@ -84,217 +88,412 @@
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
-</head>
-<body class="antialiased selection:bg-cyan-500 selection:text-black">
+    </head>
+    <body class="antialiased selection:bg-cyan-500 selection:text-black">
 
-    <nav class="fixed w-full z-40 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-1 z-50">
-                Visio<span class="text-cyan-400">Bus</span>26
-            </a>
-            <div class="hidden md:flex space-x-8 text-sm font-semibold items-center">
-                <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
-                <a href="trends.html" class="hover:text-cyan-400 transition">Tips Sukses</a>
+        <nav class="fixed w-full z-40 glass-nav">
+            <div
+                class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+                <a href="index.html"
+                    class="text-2xl font-bold tracking-tighter flex items-center gap-1 z-50">
+                    Visio<span class="text-cyan-400">Bus</span>26
+                </a>
+                <div
+                    class="hidden md:flex space-x-8 text-sm font-semibold items-center">
+                    <a href="index.html"
+                        class="hover:text-cyan-400 transition">Home</a>
+                    <a href="trends.html"
+                        class="hover:text-cyan-400 transition">Tips Sukses</a>
+                </div>
+                <a href="index.html" class="md:hidden text-white p-2 z-50">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
             </div>
-            <a href="index.html" class="md:hidden text-white p-2 z-50">
-                <i class="fas fa-arrow-left text-xl"></i>
-            </a>
+        </nav>
+
+        <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+            <header class="mb-8 text-center">
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Ide Bisnis
+                    <span class="text-cyan-400">2026</span></h1>
+
+                <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
+                    <button class="filter-btn active"
+                        onclick="filterSelection('all')">All</button>
+                    <button class="filter-btn"
+                        onclick="filterSelection('tech')">Digital & AI</button>
+                    <button class="filter-btn"
+                        onclick="filterSelection('creative')">Kreatif &
+                        Edukasi</button>
+                    <button class="filter-btn"
+                        onclick="filterSelection('service')">Affiliate &
+                        Jasa</button>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                id="ideas-container">
+
+                <div
+                    class="idea-card theme-tech p-6 rounded-3xl group filter-item tech"
+                    onclick="openModal('ai_agency')">
+                    <div>
+                        <span class="category-label text-cyan-500">DIGITAL &
+                            AI</span>
+                        <div
+                            class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">AI
+                            Automation Agency</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Konsultan
+                            implementasi AI untuk perusahaan agar operasional
+                            lebih efisien.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-tech p-6 rounded-3xl group filter-item tech"
+                    onclick="openModal('clipper')">
+                    <div>
+                        <span class="category-label text-cyan-500">DIGITAL &
+                            AI</span>
+                        <div
+                            class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Podcast
+                            Clipper</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Memotong
+                            video podcast panjang menjadi konten pendek viral
+                            menggunakan bantuan AI.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                    onclick="openModal('edu_creator')">
+                    <div>
+                        <span class="category-label text-purple-500">KREATIF &
+                            EDUKASI</span>
+                        <div
+                            class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Edu
+                            Creator</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">"Productize Yourself".
+                            Ubah keahlian menjadi produk digital
+                            (E-book/Course).</p>
+                    </div>
+                    <div
+                        class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                    onclick="openModal('ghost')">
+                    <div>
+                        <span class="category-label text-purple-500">KREATIF &
+                            EDUKASI</span>
+                        <div
+                            class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                            <i class="fas fa-ghost"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Ghost
+                            Producer</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Mengelola
+                            konten dan strategi digital untuk para ahli yang
+                            malu tampil di kamera.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                    onclick="openModal('youtuber')">
+                    <div>
+                        <span class="category-label text-purple-500">KREATIF &
+                            EDUKASI</span>
+                        <div
+                            class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">YouTuber
+                            2026</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Memanfaatkan
+                            algoritma baru YouTube yang memihak kreator kecil
+                            untuk personal branding.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                    onclick="openModal('writer')">
+                    <div>
+                        <span class="category-label text-purple-500">KREATIF &
+                            EDUKASI</span>
+                        <div
+                            class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                            <i class="fas fa-pen-nib"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Writing
+                            Services</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Menjual
+                            jasa pengolahan kata untuk mengubah ide menjadi
+                            tulisan profesional.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-service p-6 rounded-3xl group filter-item service"
+                    onclick="openModal('curator')">
+                    <div>
+                        <span class="category-label text-yellow-500">AFFILIATE &
+                            JASA</span>
+                        <div
+                            class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                            <i class="fas fa-layer-group"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Content
+                            Curator</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Merangkum
+                            konten panjang jadi format slide/carousel + link
+                            affiliate di bio.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-service p-6 rounded-3xl group filter-item service"
+                    onclick="openModal('affiliator')">
+                    <div>
+                        <span class="category-label text-yellow-500">AFFILIATE &
+                            JASA</span>
+                        <div
+                            class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">TikTok
+                            Affiliator</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Mengubah
+                            pengeluaran belanja menjadi aset konten review
+                            dengan keranjang kuning.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-service p-6 rounded-3xl group filter-item service"
+                    onclick="openModal('dropshipper')">
+                    <div>
+                        <span class="category-label text-yellow-500">AFFILIATE &
+                            JASA</span>
+                        <div
+                            class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Dropshipper</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">Model
+                            jualan tanpa stok. Hanya meneruskan pesanan pembeli
+                            ke supplier.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-service p-6 rounded-3xl group filter-item service"
+                    onclick="openModal('jastip')">
+                    <div>
+                        <span class="category-label text-yellow-500">AFFILIATE &
+                            JASA</span>
+                        <div
+                            class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                            <i class="fas fa-plane-departure"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Jastip</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Menjembatani
+                            jarak antara ketersediaan barang dan akses
+                            pembeli.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-tech p-6 rounded-3xl group filter-item tech"
+                    onclick="openModal('seo')">
+                    <div>
+                        <span class="category-label text-cyan-500">DIGITAL &
+                            AI</span>
+                        <div
+                            class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                            <i class="fas fa-magnifying-glass-chart"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">SEO
+                            Services</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Optimasi
+                            website agar nangkring di halaman 1 Google dan
+                            mendatangkan traffic gratis.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                    onclick="openModal('packaging')">
+                    <div>
+                        <span class="category-label text-purple-500">KREATIF &
+                            EDUKASI</span>
+                        <div
+                            class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                            <i class="fas fa-cube"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Packaging
+                            Strategist</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Memadukan
+                            strategi pemasaran dan estetika kemasan untuk memicu
+                            keputusan pembelian.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                    onclick="openModal('graphic_design')">
+                    <div>
+                        <span class="category-label text-purple-500">KREATIF &
+                            EDUKASI</span>
+                        <div
+                            class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                            <i class="fas fa-pen-ruler"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Graphic
+                            Design</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Solusi
+                            komunikasi visual untuk membangun identitas merek
+                            yang kuat.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-    </nav>
 
-    <div class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-        <header class="mb-8 text-center">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4">Ide Bisnis <span class="text-cyan-400">2026</span></h1>
-            
-            <div class="flex flex-wrap justify-center gap-3 md:gap-4 mb-10">
-                <button class="filter-btn active" onclick="filterSelection('all')">All</button>
-                <button class="filter-btn" onclick="filterSelection('tech')">Digital & AI</button>
-                <button class="filter-btn" onclick="filterSelection('creative')">Kreatif & Edukasi</button>
-                <button class="filter-btn" onclick="filterSelection('service')">Affiliate & Jasa</button>
-            </div>
-        </header>
+        <div id="modal-overlay"
+            class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden-modal transition-opacity duration-300">
+            <div class="absolute inset-0" onclick="closeModal()"></div>
+            <div id="modal-content"
+                class="relative bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-700 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="ideas-container">
-            
-            <div class="idea-card theme-tech p-6 rounded-3xl group filter-item tech" onclick="openModal('ai_agency')">
-                <div>
-                    <span class="category-label text-cyan-500">DIGITAL & AI</span>
-                    <div class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
-                        <i class="fas fa-robot"></i>
+                <div
+                    class="p-6 border-b border-slate-700 bg-slate-800/50 flex justify-between items-start">
+                    <div>
+                        <h2 id="m-title"
+                            class="text-2xl font-bold text-white mb-1">Judul
+                            Ide</h2>
+                        <span id="m-tag"
+                            class="text-xs font-bold bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20">KATEGORI</span>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">AI Automation Agency</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Konsultan implementasi AI untuk perusahaan agar operasional lebih efisien.</p>
+                    <button onclick="closeModal()"
+                        class="text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
+                        <i class="fas fa-times"></i>
+                    </button>
                 </div>
-                <div class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
 
-            <div class="idea-card theme-tech p-6 rounded-3xl group filter-item tech" onclick="openModal('clipper')">
-                <div>
-                    <span class="category-label text-cyan-500">DIGITAL & AI</span>
-                    <div class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
-                        <i class="fas fa-video"></i>
+                <div class="p-6 overflow-y-auto space-y-6">
+                    <div>
+                        <h4
+                            class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Konsep
+                            Bisnis</h4>
+                        <p id="m-desc"
+                            class="text-slate-300 leading-relaxed text-sm">Deskripsi...</p>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Podcast Clipper</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Memotong video podcast panjang menjadi konten pendek viral menggunakan bantuan AI.</p>
-                </div>
-                <div class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
 
-            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('edu_creator')">
-                <div>
-                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
-                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
-                        <i class="fas fa-graduation-cap"></i>
+                    <div
+                        class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
+                        <h4
+                            class="text-xs font-bold text-cyan-400 uppercase mb-3 flex items-center gap-2">
+                            <i class="fas fa-list-ul"></i> Langkah Memulai
+                        </h4>
+                        <ul id="m-steps"
+                            class="space-y-3 text-sm text-slate-300"></ul>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Edu Creator</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">"Productize Yourself". Ubah keahlian menjadi produk digital (E-book/Course).</p>
-                </div>
-                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
 
-            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('ghost')">
-                <div>
-                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
-                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
-                        <i class="fas fa-ghost"></i>
+                    <div>
+                        <h4
+                            class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Tools
+                            Wajib</h4>
+                        <div id="m-tools" class="flex flex-wrap gap-2"></div>
                     </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Ghost Producer</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Mengelola konten dan strategi digital untuk para ahli yang malu tampil di kamera.</p>
-                </div>
-                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('youtuber')">
-                <div>
-                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
-                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">YouTuber 2026</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Memanfaatkan algoritma baru YouTube yang memihak kreator kecil untuk personal branding.</p>
-                </div>
-                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('writer')">
-                <div>
-                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
-                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
-                        <i class="fas fa-pen-nib"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Writing Services</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Menjual jasa pengolahan kata untuk mengubah ide menjadi tulisan profesional.</p>
-                </div>
-                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('curator')">
-                <div>
-                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
-                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
-                        <i class="fas fa-layer-group"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Content Curator</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Merangkum konten panjang jadi format slide/carousel + link affiliate di bio.</p>
-                </div>
-                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('affiliator')">
-                <div>
-                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
-                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
-                        <i class="fas fa-shopping-bag"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">TikTok Affiliator</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Mengubah pengeluaran belanja menjadi aset konten review dengan keranjang kuning.</p>
-                </div>
-                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('dropshipper')">
-                <div>
-                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
-                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
-                        <i class="fas fa-box-open"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Dropshipper</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Model jualan tanpa stok. Hanya meneruskan pesanan pembeli ke supplier.</p>
-                </div>
-                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('jastip')">
-                <div>
-                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
-                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
-                        <i class="fas fa-plane-departure"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Jastip</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Menjembatani jarak antara ketersediaan barang dan akses pembeli.</p>
-                </div>
-                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
-                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden-modal transition-opacity duration-300">
-        <div class="absolute inset-0" onclick="closeModal()"></div>
-        <div id="modal-content" class="relative bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-700 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
-            
-            <div class="p-6 border-b border-slate-700 bg-slate-800/50 flex justify-between items-start">
-                <div>
-                    <h2 id="m-title" class="text-2xl font-bold text-white mb-1">Judul Ide</h2>
-                    <span id="m-tag" class="text-xs font-bold bg-cyan-500/10 text-cyan-400 px-2 py-1 rounded border border-cyan-500/20">KATEGORI</span>
-                </div>
-                <button onclick="closeModal()" class="text-slate-400 hover:text-white bg-slate-800 p-2 rounded-full w-8 h-8 flex items-center justify-center transition">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="p-6 overflow-y-auto space-y-6">
-                <div>
-                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Konsep Bisnis</h4>
-                    <p id="m-desc" class="text-slate-300 leading-relaxed text-sm">Deskripsi...</p>
-                </div>
-
-                <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
-                    <h4 class="text-xs font-bold text-cyan-400 uppercase mb-3 flex items-center gap-2">
-                        <i class="fas fa-list-ul"></i> Langkah Memulai
-                    </h4>
-                    <ul id="m-steps" class="space-y-3 text-sm text-slate-300"></ul>
-                </div>
-
-                <div>
-                    <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Tools Wajib</h4>
-                    <div id="m-tools" class="flex flex-wrap gap-2"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
+        <script>
         document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
 
         // Filter Logic
@@ -445,6 +644,43 @@
                     "Kerjakan & Minta Testimoni."
                 ],
                 tools: ["Google Docs", "KBBI/Grammarly", "ChatGPT"]
+            },
+            "seo": {
+                title: "SEO Services",
+                tag: "DIGITAL & AI",
+                desc: "Website bisnis butuh pengunjung organik (gratis) agar tidak terus-menerus bergantung pada biaya iklan (Ads). Kamu mengoptimalkan sisi konten dan teknis agar website klien bisa 'nangkring' di halaman 1 Google.",
+                steps: [
+                    "Riset keyword yang sering dicari target.",
+                    "Optimasi konten & teknis website agar relevan.",
+                    "Cari backlink untuk dongkrak posisi di Google.",
+                    "Tawarkan jasa maintenance bulanan ke pebisnis."
+                ],
+                tools: ["Ahrefs", "Google Analytics", "Search Console"]
+            },
+            "packaging": {
+                title: "Packaging Strategist",
+                tag: "KREATIF & EDUKASI",
+                desc: "Arsitek visual yang memadukan strategi pemasaran dan estetika untuk menciptakan kemasan yang memperkuat karakter merek sekaligus memicu keputusan pembelian konsumen.",
+                steps: [
+                    "Pahami teknis bahan dan cetak.",
+                    "Tunjukkan karya yang menaikkan omzet.",
+                    "Pelajari estetika pasar terkini.",
+                    "Cari mitra percetakan berkualitas.",
+                    "Bangun reputasi di platform profesional."
+                ],
+                tools: ["Photoshop", "Illustrator", "Dimension"]
+            },
+            "graphic_design": {
+                title: "Graphic Design Services",
+                tag: "KREATIF & EDUKASI",
+                desc: "Penyedia solusi komunikasi visual profesional yang mengintegrasikan estetika dengan fungsionalitas untuk membangun identitas merek yang kuat, menyampaikan pesan secara efektif, serta meningkatkan nilai kompetitif produk di pasar digital.",
+                steps: [
+                    "Pelajari komposisi warna dan tata letak desain.",
+                    "Fokus teknik tipografi, kontras, dan hierarki visual.",
+                    "Ciptakan 3-5 proyek konsep (portofolio).",
+                    "Publikasikan karya di platform (Behance/Dribbble)."
+                ],
+                tools: ["Illustrator", "Photoshop", "Figma"]
             }
         };
 
@@ -478,5 +714,5 @@
             document.body.style.overflow = 'auto';
         }
     </script>
-</body>
+    </body>
 </html>

@@ -135,6 +135,69 @@
 
                 <div
                     class="idea-card theme-tech p-6 rounded-3xl group filter-item tech"
+                    onclick="openModal('ai_strategist')">
+                    <div>
+                        <span class="category-label text-cyan-500">DIGITAL &
+                            AI</span>
+                        <div
+                            class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">AI Content Strategist</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Padukan kreativitas manusia dan AI untuk merancang konten digital yang cerdas.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <div
+                    class="idea-card theme-service p-6 rounded-3xl group filter-item service"
+                    onclick="openModal('event_planner')">
+                    <div>
+                        <span class="category-label text-yellow-500">AFFILIATE &
+                            JASA</span>
+                        <div
+                            class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <h3
+                            class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Virtual Event Planner</h3>
+                        <p
+                            class="text-slate-400 text-sm leading-relaxed">Mengelola teknis dan alur acara online agar interaktif dan profesional.</p>
+                    </div>
+                    <div
+                        class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                        Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                 <div
+                 class="idea-card theme-creative p-6 rounded-3xl group filter-item creative"
+                 onclick="openModal('video_editor')">
+                 <div>
+                     <span class="category-label text-purple-500">KREATIF &
+                         EDUKASI</span>
+                     <div
+                         class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                         <i class="fas fa-film"></i>
+                     </div>
+                     <h3
+                         class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Video Editor</h3>
+                     <p
+                         class="text-slate-400 text-sm leading-relaxed">Ubah video mentah menjadi konten viral dengan visual memukau.</p>
+                 </div>
+                 <div
+                     class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                 </div>
+             </div>
+
+                <div
+                    class="idea-card theme-tech p-6 rounded-3xl group filter-item tech"
                     onclick="openModal('ai_agency')">
                     <div>
                         <span class="category-label text-cyan-500">DIGITAL &
@@ -378,7 +441,7 @@
                             AI</span>
                         <div
                             class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
-                            <i class="fas fa-magnifying-glass-chart"></i>
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <h3
                             class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">SEO
@@ -430,7 +493,7 @@
                         </div>
                         <h3
                             class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Graphic
-                            Design</p>
+                            Design Services</p>
                         <p class="text-slate-400 text-sm leading-relaxed">Solusi
                             komunikasi visual untuk membangun identitas merek
                             yang kuat.</p>
@@ -521,6 +584,42 @@
 
         // Data Ide Bisnis
         const ideasData = {
+            "ai_strategist": {
+                title: "AI Content Strategist",
+                tag: "DIGITAL & AI",
+                desc: "Jasa profesional yang memadukan kreativitas manusia dan kecerdasan AI untuk merancang serta mengelola konten digital secara cepat, cerdas, dan terukur demi meningkatkan performa media sosial klien.",
+                steps: [
+                    "Buka ChatGPT, ketik: 'Buatkan 7 ide konten IG untuk bisnis [jenis usaha]'.",
+                    "Copy satu ide terbaik.",
+                    "Buka Canva, pilih template, lalu paste teks tadi.",
+                    "Download dan kirim ke pemilik usaha sebagai contoh tawaran jasa."
+                ],
+                tools: ["Claude/Jasper", "Surfer SEO", "Canva"]
+            },
+            "event_planner": {
+                title: "Virtual Event Planner",
+                tag: "AFFILIATE & JASA",
+                desc: "Banyak orang ingin bikin acara online tapi takut kendala teknis dan acaranya membosankan. Anda hadir sebagai ahli yang mengelola alur dan teknis di platform digital agar acara berjalan lancar, interaktif, dan profesional.",
+                steps: [
+                    "Kuasai fitur teknis platform dan cara mengelola audiens.",
+                    "Tawarkan jasa gratis/murah ke komunitas.",
+                    "Charge biaya berdasarkan paket.",
+                    "Kumpulkan testimoni dan dokumentasi."
+                ],
+                tools: ["Zoom", "Eventbrite", "Asana"]
+            },
+            "video_editor": {
+                title: "Video Editor",
+                tag: "KREATIF & EDUKASI",
+                desc: "Banyak brand punya footage melimpah tapi minim retensi. Kamu hadir sebagai solusi kreatif yang mengubah video mentah menjadi konten viral dengan visual memukau dan daya tarik tinggi.",
+                steps: [
+                    "Fokus kuasai satu alat (misal: CapCut) sampai mahir.",
+                    "Ambil video populer, edit ulang dengan gaya kamu.",
+                    "Cari 1-2 klien untuk dibantu secara gratis sebagai testimoni.",
+                    "Unggah hasil edit dan proses kerja di media sosial untuk menarik klien."
+                ],
+                tools: ["Adobe Premiere Pro", "Eksternal SSD", "Hardware Kuat"]
+            },
             "ai_agency": {
                 title: "AI Automation Agency",
                 tag: "DIGITAL & AI",

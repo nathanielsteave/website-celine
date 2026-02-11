@@ -12,10 +12,10 @@
             font-family: 'Outfit', sans-serif; 
             background-color: #020617; 
             color: #f8fafc; 
-            opacity: 0; 
-            transition: opacity 0.6s ease; 
+            opacity: 0; /* Mulai transparan untuk efek fade-in */
+            transition: opacity 0.6s ease; /* Durasi transisi */
             overflow-x: hidden;
-            width: 100vw; /* Memastikan lebar body pas layar */
+            width: 100vw;
         }
         body.loaded { opacity: 1; }
         
@@ -50,7 +50,7 @@
             color: #94a3b8;
             padding: 0.5rem 1.2rem;
             border-radius: 9999px;
-            font-size: 0.85rem; /* Font size disesuaikan untuk mobile */
+            font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -113,7 +113,7 @@
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Hide scrollbar for filter container */
+        /* Hide scrollbar */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -433,7 +433,7 @@
                         <i class="fas fa-headset"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Virtual Assistant</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Asisten jarak jauh untuk manajemen admin agar klien fokus pada bisnis.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Asisten jarak jauh untuk pemilik bisnis yang sibuk. Kamu menangani manajemen email, jadwal, hingga entri data agar operasional klien berjalan lebih efisien dan mereka bisa fokus mengembangkan bisnis.</p>
                 </div>
                 <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
@@ -782,6 +782,19 @@
             modalOverlay.classList.add('hidden-modal');
             document.body.style.overflow = 'auto';
         }
+
+        // TRANSISI HALAMAN YANG DITAMBAHKAN
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', e => {
+                // Cek apakah link internal dan bukan anchor link (#)
+                if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); // Cegah pindah langsung
+                    const target = link.href;
+                    document.body.style.opacity = 0; // Fade out
+                    setTimeout(() => window.location.href = target, 500); // Tunggu animasi selesai baru pindah
+                }
+            });
+        });
     </script>
 </body>
 </html>

@@ -12,12 +12,12 @@
             font-family: 'Outfit', sans-serif; 
             background-color: #020617; 
             color: #f8fafc; 
-            opacity: 0; 
-            transition: opacity 0.6s ease; 
-            overflow-x: hidden; /* Mencegah scroll samping */
+            opacity: 0; /* Mulai dari transparan */
+            transition: opacity 0.6s ease; /* Durasi animasi fade */
+            overflow-x: hidden; 
             width: 100vw;
         }
-        body.loaded { opacity: 1; }
+        body.loaded { opacity: 1; } /* Class untuk memunculkan halaman */
         
         /* Background Grid Pattern */
         .bg-grid {
@@ -118,7 +118,7 @@
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">Bisnis 2026.</span>
             </h1>
             <p class="text-slate-400 max-w-2xl text-base md:text-lg leading-relaxed">
-                Berdasarkan data pasar terbaru, inilah 5 sektor utama yang diprediksi akan mendominasi dan menghasilkan peluang terbesar di tahun 2026.
+                Berdasarkan data pasar, inilah 5 sektor utama yang diprediksi akan mendominasi dan menghasilkan peluang terbesar di tahun 2026.
             </p>
         </header>
 
@@ -131,6 +131,7 @@
                         <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400 text-2xl group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300">
                             <i class="fas fa-microchip"></i>
                         </div>
+                        <span class="tag-pill bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">DOMINAN</span>
                     </div>
                     <h2 class="text-2xl md:text-3xl font-bold mb-3 text-white group-hover:text-cyan-400 transition-colors">1. Digitalisasi & AI</h2>
                     <p class="text-slate-400 leading-relaxed text-sm md:text-base group-hover:text-slate-300 transition-colors">
@@ -322,6 +323,19 @@
             modalOverlay.classList.add('hidden-modal');
             document.body.style.overflow = 'auto';
         }
+
+        // TRANSISI HALAMAN YANG DITAMBAHKAN
+        document.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', e => {
+                // Cek apakah link internal dan bukan anchor link (#)
+                if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
+                    e.preventDefault(); // Cegah pindah langsung
+                    const target = link.href;
+                    document.body.style.opacity = 0; // Fade out
+                    setTimeout(() => window.location.href = target, 500); // Tunggu animasi selesai baru pindah
+                }
+            });
+        });
     </script>
 </body>
 </html>

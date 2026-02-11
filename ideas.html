@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Katalog Ide Bisnis 2026 | VisioBus</title>
+    <title>Ide Bisnis 2026 | VisioBus</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -12,14 +12,13 @@
             font-family: 'Outfit', sans-serif; 
             background-color: #020617; 
             color: #f8fafc; 
-            opacity: 0; /* Mulai transparan untuk efek fade-in */
-            transition: opacity 0.6s ease; /* Durasi transisi */
+            opacity: 0; 
+            transition: opacity 0.6s ease; 
             overflow-x: hidden;
             width: 100vw;
         }
         body.loaded { opacity: 1; }
         
-        /* Background Grid Pattern */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -28,7 +27,6 @@
             -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
         }
 
-        /* Animated Blobs */
         .blob { 
             position: absolute; 
             filter: blur(90px); 
@@ -43,7 +41,6 @@
             border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
 
-        /* Filter Button Styles */
         .filter-btn {
             border: 1px solid rgba(255,255,255,0.1);
             background: rgba(30, 41, 59, 0.4);
@@ -70,7 +67,6 @@
             box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
         }
 
-        /* Bento Card Style */
         .idea-card { 
             background: rgba(30, 41, 59, 0.4); 
             border: 1px solid rgba(255,255,255,0.08); 
@@ -86,7 +82,6 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
-        /* Card Hover Themes */
         .theme-tech:hover { border-color: rgba(34, 211, 238, 0.6); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.2); transform: translateY(-4px); }
         .theme-creative:hover { border-color: rgba(192, 132, 252, 0.6); box-shadow: 0 10px 40px -10px rgba(192, 132, 252, 0.2); transform: translateY(-4px); }
         .theme-service:hover { border-color: rgba(250, 204, 21, 0.6); box-shadow: 0 10px 40px -10px rgba(250, 204, 21, 0.2); transform: translateY(-4px); }
@@ -100,7 +95,6 @@
             display: inline-block;
         }
 
-        /* Modal Styles */
         #modal-overlay { transition: opacity 0.3s ease; }
         #modal-content { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .hidden-modal { opacity: 0; pointer-events: none; }
@@ -108,12 +102,10 @@
         .show-modal { opacity: 1; pointer-events: auto; }
         .show-modal #modal-content { transform: scale(1) translateY(0); }
         
-        /* Hide Animation */
         .hidden-card { display: none; }
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Hide scrollbar */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -131,15 +123,34 @@
             <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-1 z-50">
                 Visio<span class="text-cyan-400">Bus</span>26
             </a>
+            
             <div class="hidden md:flex space-x-8 text-sm font-semibold items-center">
                 <a href="index.html" class="hover:text-cyan-400 transition">Home</a>
-                <a href="trends.html" class="hover:text-cyan-400 transition">Tips Sukses</a>
+                <a href="trends.html" class="hover:text-cyan-400 transition">Tren Bisnis</a>
             </div>
-            <a href="index.html" class="md:hidden text-white p-2 z-50">
-                <i class="fas fa-arrow-left text-xl"></i>
-            </a>
+
+            <button onclick="toggleSidebar()" class="md:hidden text-white p-2 z-50 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
     </nav>
+
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden transition-opacity duration-300 opacity-0"></div>
+    <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 bg-slate-900/95 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+        <div class="p-6 flex flex-col h-full">
+            <div class="flex justify-end mb-8">
+                <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white transition p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-6">
+                <a href="index.html" class="text-lg font-semibold text-slate-300 hover:text-white hover:border-l-4 hover:border-slate-500 pl-4 transition-all">Home</a>
+                <a href="ideas.html" class="text-lg font-bold text-cyan-400 border-l-4 border-cyan-400 pl-4 bg-cyan-900/10 py-2 rounded-r">Ide Bisnis</a>
+                <a href="trends.html" class="text-lg font-semibold text-slate-300 hover:text-white hover:border-l-4 hover:border-slate-500 pl-4 transition-all">Tren Bisnis</a>
+            </div>
+            <div class="mt-auto pt-8 border-t border-slate-800"><p class="text-xs text-slate-500 text-center">© 2026 VisioBus</p></div>
+        </div>
+    </div>
 
     <div class="pt-32 pb-20 px-5 max-w-7xl mx-auto flex-grow w-full overflow-x-hidden">
         <header class="mb-10 text-center">
@@ -783,18 +794,36 @@
             document.body.style.overflow = 'auto';
         }
 
-        // TRANSISI HALAMAN YANG DITAMBAHKAN
+        // Page Transition
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
-                // Cek apakah link internal dan bukan anchor link (#)
                 if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault(); // Cegah pindah langsung
+                    e.preventDefault();
                     const target = link.href;
-                    document.body.style.opacity = 0; // Fade out
-                    setTimeout(() => window.location.href = target, 500); // Tunggu animasi selesai baru pindah
+                    document.body.style.opacity = 0;
+                    setTimeout(() => window.location.href = target, 500);
                 }
             });
         });
+
+        // Sidebar Toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const body = document.body;
+            
+            if (sidebar.classList.contains('translate-x-full')) {
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                body.style.overflow = 'hidden'; 
+            } else {
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+                body.style.overflow = 'auto'; 
+            }
+        }
     </script>
 </body>
 </html>

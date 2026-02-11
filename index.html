@@ -12,78 +12,89 @@
             font-family: 'Outfit', sans-serif; 
             background-color: #020617; 
             color: #f8fafc; 
-            overflow-x: hidden;
-            opacity: 0; 
-            transition: opacity 0.6s ease; 
+            overflow-x: hidden; 
+            width: 100vw;
+            opacity: 0;
+            transition: opacity 0.6s ease;
         }
         body.loaded { opacity: 1; }
         
-        /* Grid Background Halus */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
-            position: absolute;
-            inset: 0;
-            z-index: -2;
+            mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 80%);
         }
-
-        .blob { 
-            position: absolute; 
-            filter: blur(90px); 
-            opacity: 0.4; 
-            animation: float 10s infinite alternate; 
-            z-index: -1; 
-        }
-        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 40px); } }
 
         .hero-text { 
             background: linear-gradient(to right, #22d3ee, #818cf8); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
-            text-shadow: 0 0 40px rgba(34, 211, 238, 0.2); 
+            text-shadow: 0 0 30px rgba(34, 211, 238, 0.3); 
         }
 
         .glass-nav { 
-            background: rgba(2, 6, 23, 0.8); 
-            backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
+            background: rgba(2, 6, 23, 0.85); 
+            backdrop-filter: blur(16px); 
+            border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
-
-        /* Animasi Gambar */
+        
         .floating-img { animation: float-img 6s ease-in-out infinite; }
-        @keyframes float-img {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
+        @keyframes float-img { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
     </style>
 </head>
-<body class="antialiased selection:bg-cyan-500 selection:text-black relative flex flex-col min-h-[100dvh]">
+<body class="antialiased selection:bg-cyan-500 selection:text-black relative flex flex-col min-h-screen">
 
-    <div class="bg-grid"></div>
-    <div class="blob bg-blue-600 w-64 h-64 md:w-96 md:h-96 rounded-full top-0 left-0"></div>
-    <div class="blob bg-purple-600 w-64 h-64 md:w-96 md:h-96 rounded-full bottom-0 right-0 animation-delay-2000"></div>
+    <div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+        <div class="bg-grid absolute inset-0"></div>
+        <div class="absolute bg-blue-600 w-64 h-64 rounded-full top-[-50px] left-[-50px] blur-[80px] opacity-40"></div>
+        <div class="absolute bg-purple-600 w-64 h-64 rounded-full bottom-[-50px] right-[-50px] blur-[80px] opacity-40"></div>
+    </div>
 
-    <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center w-full">
-            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter z-50 relative flex items-center gap-1 shrink-0">
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center w-full">
+            <a href="index.html" class="text-xl md:text-2xl font-bold tracking-tighter z-50 flex items-center gap-1 shrink-0 relative">
                 Visio<span class="text-cyan-400">Bus</span>26
             </a>
             
             <div class="hidden md:flex space-x-8 text-sm font-semibold items-center">
-                <a href="trends.html" class="hover:text-cyan-400 transition">Tren Bisnis</a>
                 <a href="ideas.html" class="hover:text-cyan-400 transition">Ide Bisnis</a>
+                <a href="trends.html" class="hover:text-cyan-400 transition">Tren 2026</a>
             </div>
+
+            <button onclick="toggleSidebar()" class="md:hidden text-white p-2 z-50 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
         </div>
     </nav>
 
-    <main class="flex-grow w-full max-w-7xl mx-auto px-6 pt-32 pb-16 flex flex-col md:flex-row items-center justify-center gap-12 relative">
+    <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden transition-opacity duration-300 opacity-0"></div>
+
+    <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 bg-slate-900/95 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+        <div class="p-6 flex flex-col h-full">
+            <div class="flex justify-end mb-8">
+                <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white transition p-2">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="flex flex-col space-y-6">
+                <a href="index.html" class="text-lg font-bold text-cyan-400 border-l-4 border-cyan-400 pl-4 bg-cyan-900/10 py-2 rounded-r">Home</a>
+                <a href="ideas.html" class="text-lg font-semibold text-slate-300 hover:text-white hover:border-l-4 hover:border-slate-500 pl-4 transition-all">Ide Bisnis</a>
+                <a href="trends.html" class="text-lg font-semibold text-slate-300 hover:text-white hover:border-l-4 hover:border-slate-500 pl-4 transition-all">Tren Bisnis</a>
+            </div>
+
+            <div class="mt-auto pt-8 border-t border-slate-800">
+                <p class="text-xs text-slate-500 text-center">© 2026 VisioBus</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="flex-grow w-full max-w-7xl mx-auto px-5 pt-32 pb-12 flex flex-col md:flex-row items-center justify-center gap-10">
         
         <div class="text-center md:text-left z-10 w-full md:w-1/2">
-            
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 mb-6 rounded-full border border-cyan-500/30 bg-cyan-950/30 text-cyan-300 text-[10px] md:text-xs font-bold tracking-widest uppercase shadow-[0_0_10px_rgba(34,211,238,0.15)] mx-auto md:mx-0">
+            <div class="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-cyan-500/30 bg-cyan-950/40 text-cyan-300 text-[10px] md:text-xs font-bold tracking-widest uppercase">
                 <span class="relative flex h-2 w-2">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
@@ -91,34 +102,28 @@
                 Roadmap 2026
             </div>
             
-            <h1 class="text-[2.75rem] leading-[1.1] sm:text-5xl md:text-7xl font-extrabold mb-6 tracking-tight">
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
                 Zaman Emas <br>
                 <span class="hero-text">Digital 2026.</span>
             </h1>
 
-            <p class="text-slate-400 text-sm sm:text-base md:text-lg mb-8 leading-relaxed max-w-md mx-auto md:mx-0">
-                Algoritma sekarang memihak kreator kecil. Temukan peluang bisnis tanpa modal dari rumah sebelum kompetisi semakin ketat.
+            <p class="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md mx-auto md:mx-0 mb-8">
+                Algoritma sekarang memihak kreator kecil. Temukan peluang bisnis tanpa modal dari rumah.
             </p>
 
             <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center md:justify-start">
-                <a href="ideas.html" class="group w-full sm:w-auto px-6 py-3.5 bg-white text-slate-950 rounded-xl font-bold transition hover:bg-cyan-50 active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.2)] flex items-center justify-center gap-2 text-sm sm:text-base">
-                    <i class="fas fa-bolt text-yellow-500 group-hover:animate-pulse"></i> 
-                    Lihat Ide Bisnis
+                <a href="ideas.html" class="w-full sm:w-auto px-6 py-3.5 bg-white text-slate-950 rounded-xl font-bold flex items-center justify-center gap-2 shadow-lg active:scale-95 transition">
+                    <i class="fas fa-bolt text-yellow-500"></i> Lihat Ide Bisnis
                 </a>
-                
-                <a href="trends.html" class="w-full sm:w-auto px-6 py-3.5 bg-slate-800/40 border border-slate-700 hover:border-cyan-500/50 hover:bg-slate-800/80 rounded-xl font-bold transition active:scale-95 backdrop-blur-sm text-slate-300 flex items-center justify-center gap-2 text-sm sm:text-base">
-                    Analisa Tren <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                <a href="trends.html" class="w-full sm:w-auto px-6 py-3.5 bg-slate-800/50 border border-slate-700 text-slate-300 rounded-xl font-bold flex items-center justify-center gap-2 active:scale-95 transition hover:bg-slate-800">
+                    Analisa Tren <i class="fas fa-arrow-right text-xs"></i>
                 </a>
             </div>
         </div>
 
         <div class="relative w-full md:w-1/2 h-[300px] md:h-[500px] hidden md:block">
-            <div class="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl transform scale-75"></div>
-            
-            <div class="relative z-10 w-full h-full rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl floating-img group bg-slate-900/50 backdrop-blur-sm">
-                <img src="gambar index.png" 
-                     alt="Future Business" 
-                     class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-700">
+            <div class="relative z-10 w-full h-full rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl floating-img">
+                <img src="gambar index.png" class="w-full h-full object-cover opacity-80">
             </div>
         </div>
 
@@ -127,6 +132,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
         
+        // Page Transition
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
                 if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
@@ -137,6 +143,27 @@
                 }
             });
         });
+
+        // Sidebar Logic
+        function toggleSidebar() {
+            const sidebar = document.getElementById('mobile-sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const body = document.body;
+            
+            if (sidebar.classList.contains('translate-x-full')) {
+                // Open Sidebar
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                body.style.overflow = 'hidden'; // Lock Scroll
+            } else {
+                // Close Sidebar
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+                body.style.overflow = 'auto'; // Unlock Scroll
+            }
+        }
     </script>
 </body>
 </html>

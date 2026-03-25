@@ -4,43 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Tren Bisnis 2026 | VisioBus</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
+        /* Pengaturan dasar elemen body */
         body { 
             font-family: 'Outfit', sans-serif; 
-            background-color: #020617; 
-            color: #f8fafc; 
+            background-color: #020617; /* Warna latar sangat gelap (Night) */
+            color: #f8fafc; /* Warna teks terang (Slate) */
+            overflow-x: hidden; /* Mencegah halaman bisa digeser horizontal */
+            width: 100vw;
+            
+            /* Konfigurasi untuk animasi fade-in saat pertama kali halaman dibuka */
             opacity: 0; 
             transition: opacity 0.6s ease; 
-            overflow-x: hidden; 
-            width: 100vw;
         }
+        /* Class yang ditambahkan via JS saat loading selesai agar halaman muncul */
         body.loaded { opacity: 1; }
         
+        /* Membuat pola latar belakang kotak-kotak (grid) futuristik */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            /* Membuat grid memudar membulat ke arah luar (radial) */
             mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
             -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
         }
 
+        /* Dekorasi bola cahaya buram (blob) di latar belakang */
         .blob { 
             position: absolute; 
             filter: blur(90px); 
             opacity: 0.4; 
-            animation: float 10s infinite alternate; 
+            animation: float 10s infinite alternate; /* Animasi mengambang secara infinite */
         }
-        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 40px); } }
+        @keyframes float { 
+            0% { transform: translate(0, 0); } 
+            100% { transform: translate(30px, 40px); } 
+        }
 
+        /* Efek latar navigasi buram transparan (Glassmorphism) */
         .glass-nav { 
             background: rgba(2, 6, 23, 0.85); 
             backdrop-filter: blur(16px); 
             border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
 
+        /* Styling dasar untuk kartu konten bergaya "Bento Box" */
         .bento-card { 
             background: rgba(30, 41, 59, 0.4); 
             border: 1px solid rgba(255,255,255,0.08); 
@@ -57,12 +71,15 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
+        /* Varian warna hover untuk masing-masing kartu tren (Cyan, Green, Pink, Purple, Orange) */
+        /* Memberikan efek border menyala dan kartu sedikit naik saat disorot mouse */
         .card-cyan:hover { border-color: rgba(34, 211, 238, 0.6); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.25); transform: translateY(-4px); }
         .card-green:hover { border-color: rgba(74, 222, 128, 0.6); box-shadow: 0 10px 40px -10px rgba(74, 222, 128, 0.25); transform: translateY(-4px); }
         .card-pink:hover { border-color: rgba(244, 114, 182, 0.6); box-shadow: 0 10px 40px -10px rgba(244, 114, 182, 0.25); transform: translateY(-4px); }
         .card-purple:hover { border-color: rgba(168, 85, 247, 0.6); box-shadow: 0 10px 40px -10px rgba(168, 85, 247, 0.25); transform: translateY(-4px); }
         .card-orange:hover { border-color: rgba(251, 146, 60, 0.6); box-shadow: 0 10px 40px -10px rgba(251, 146, 60, 0.25); transform: translateY(-4px); }
 
+        /* Styling untuk elemen badge/tag kecil (Tidak dipakai di HTML ini, tapi disiapkan di CSS) */
         .tag-pill {
             font-size: 0.6rem;
             text-transform: uppercase;
@@ -73,11 +90,13 @@
             display: inline-block;
         }
 
+        /* Konfigurasi transisi dan visibilitas untuk Modal/Popup */
         #modal-overlay { transition: opacity 0.3s ease; }
-        .hidden-modal { opacity: 0; pointer-events: none; }
-        .show-modal { opacity: 1; pointer-events: auto; }
+        .hidden-modal { opacity: 0; pointer-events: none; } /* Menyembunyikan modal sepenuhnya */
+        .show-modal { opacity: 1; pointer-events: auto; } /* Menampilkan modal agar bisa di-klik */
     </style>
 </head>
+
 <body class="antialiased selection:bg-cyan-500 selection:text-black min-h-screen flex flex-col relative">
 
     <div class="fixed inset-0 w-full h-full overflow-hidden pointer-events-none -z-10">
@@ -88,7 +107,8 @@
 
     <nav class="fixed w-full z-40 glass-nav">
         <div class="max-w-7xl mx-auto px-5 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-1 z-50">
+            
+            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-0 z-50">
                 Visio<span class="text-cyan-400">Bus</span>26
             </a>
             
@@ -104,23 +124,28 @@
     </nav>
 
     <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden transition-opacity duration-300 opacity-0"></div>
+    
     <div id="mobile-sidebar" class="fixed top-0 right-0 h-full w-64 bg-slate-900/95 border-l border-slate-800 z-50 transform translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
         <div class="p-6 flex flex-col h-full">
+            
             <div class="flex justify-end mb-8">
                 <button onclick="toggleSidebar()" class="text-slate-400 hover:text-white transition p-2">
                     <i class="fas fa-times text-2xl"></i>
                 </button>
             </div>
+            
             <div class="flex flex-col space-y-6">
                 <a href="index.html" class="text-lg font-semibold text-slate-300 hover:text-white hover:border-l-4 hover:border-slate-500 pl-4 transition-all">Home</a>
                 <a href="ideas.html" class="text-lg font-semibold text-slate-300 hover:text-white hover:border-l-4 hover:border-slate-500 pl-4 transition-all">Ide Bisnis</a>
                 <a href="trends.html" class="text-lg font-bold text-cyan-400 border-l-4 border-cyan-400 pl-4 bg-cyan-900/10 py-2 rounded-r">Tren Bisnis</a>
             </div>
+            
             <div class="mt-auto pt-8 border-t border-slate-800"><p class="text-xs text-slate-500 text-center">© 2026 VisioBus</p></div>
         </div>
     </div>
 
     <div class="pt-28 pb-20 px-5 max-w-7xl mx-auto flex-grow w-full">
+        
         <header class="mb-12 text-center md:text-left">
             <div class="inline-block px-3 py-1 mb-4 rounded-full border border-cyan-500/30 bg-cyan-900/20 text-cyan-300 text-xs font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(34,211,238,0.15)]">
                 Market Outlook
@@ -138,6 +163,7 @@
             
             <div class="bento-card card-cyan p-8 rounded-3xl md:col-span-2 group" onclick="openModal('ai')">
                 <div class="absolute top-0 right-0 bg-cyan-600/10 w-64 h-64 blur-3xl rounded-full transition group-hover:bg-cyan-600/20"></div>
+                
                 <div class="relative z-10">
                     <div class="flex justify-between items-start mb-6">
                         <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400 text-2xl group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300">
@@ -222,10 +248,13 @@
             </p>
         </div>
     </div>
-
+    
     <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden-modal transition-opacity duration-300">
+        
         <div class="absolute inset-0" onclick="closeModal()"></div>
+        
         <div id="modal-content" class="relative bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-700 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            
             <div class="p-6 border-b border-slate-700 bg-slate-800/50 flex justify-between items-start">
                 <div>
                     <h2 id="m-title" class="text-2xl font-bold text-white mb-1">Judul Tren</h2>
@@ -235,11 +264,13 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
+            
             <div class="p-6 overflow-y-auto space-y-6">
                 <div>
                     <h4 class="text-xs font-bold text-slate-500 uppercase mb-2 tracking-wider">Detail Tren</h4>
                     <p id="m-desc" class="text-slate-300 leading-relaxed text-sm md:text-base">Deskripsi...</p>
                 </div>
+                
                 <div class="bg-slate-800/50 p-5 rounded-xl border border-slate-700">
                     <h4 class="text-xs font-bold text-cyan-400 uppercase mb-3 flex items-center gap-2">
                         <i class="fas fa-lightbulb"></i> Ide Bisnis Spesifik
@@ -251,8 +282,12 @@
     </div>
 
     <script>
+        // Memicu animasi fade-in (opacity 0 -> 1) saat seluruh file HTML selesai diload browser
         document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
 
+        // DATABASE INTERNAL (JSON Object)
+        // Data teks untuk masing-masing tren bisnis. Diambil oleh fungsi openModal() menggunakan key ID.
+        // Data ide-ide disiapkan sebagai array agar mudah dimapping menjadi tag <li>. (Lihat "points")
         const trendsData = {
             "ai": {
                 title: "Digitalisasi & AI",
@@ -306,59 +341,92 @@
             }
         };
 
+        // Menangkap elemen-elemen HTML Modal ke dalam variabel JavaScript untuk dimanipulasi
         const modalOverlay = document.getElementById('modal-overlay');
         const mTitle = document.getElementById('m-title');
         const mTag = document.getElementById('m-tag');
         const mDesc = document.getElementById('m-desc');
         const mPoints = document.getElementById('m-points');
 
+        // FUNGSI MEMBUKA MODAL
+        // Mengambil argumen berupa string 'id' (misal: 'ai', 'eco') yang dikirim oleh onclick di HTML
         function openModal(id) {
+            // Mencari objek data di variabel trendsData
             const data = trendsData[id];
+            
+            // Jika data tidak ditemukan, hentikan proses (return)
             if(!data) return;
+            
+            // Suntikkan teks dari objek data ke elemen HTML
             mTitle.innerText = data.title;
             mTag.innerText = data.tag;
             mDesc.innerText = data.desc;
+            
+            // Mengubah array 'points' menjadi kumpulan elemen list <li> HTML dengan ikon tanda centang
             mPoints.innerHTML = data.points.map(point => 
                 `<li class="flex items-start gap-2"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>${point}</span></li>`
             ).join('');
+            
+            // Ubah class agar modal muncul dari transparan ke terlihat penuh (opacity 1)
             modalOverlay.classList.remove('hidden-modal');
             modalOverlay.classList.add('show-modal');
+            
+            // Kunci scroll body agar user tidak bisa menggulir halaman utama saat modal terbuka
             document.body.style.overflow = 'hidden';
         }
 
+        // FUNGSI MENUTUP MODAL
         function closeModal() {
+            // Sembunyikan modal dengan mengubah class kembali ke hidden
             modalOverlay.classList.remove('show-modal');
             modalOverlay.classList.add('hidden-modal');
+            
+            // Bebaskan kembali scroll body halaman utama
             document.body.style.overflow = 'auto';
         }
 
-        // Page Transition
+        // FUNGSI TRANSISI PINDAH HALAMAN
+        // Beri efek fade-out (opacity menjadi 0) saat user mengklik link untuk berpindah halaman.
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
+                // Pastikan link valid dan bukan anchor text (seperti href="#")
                 if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = link.href;
-                    document.body.style.opacity = 0;
+                    e.preventDefault(); // Cegah pindah langsung
+                    const target = link.href; // Tangkap URL tujuan
+                    document.body.style.opacity = 0; // Ubah seluruh halaman jadi transparan
+                    
+                    // Tunggu 500ms agar animasi selesai, lalu pindahkan browser ke URL tujuan
                     setTimeout(() => window.location.href = target, 500);
                 }
             });
         });
 
-        // Sidebar Toggle
+        // FUNGSI MEMBUKA/MENUTUP SIDEBAR (HANYA MOBILE)
         function toggleSidebar() {
-            const sidebar = document.getElementById('mobile-sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
+            const sidebar = document.getElementById('mobile-sidebar'); // Elemen panel menu
+            const overlay = document.getElementById('sidebar-overlay'); // Background gelap
             const body = document.body;
             
+            // Pengecekan status: Jika sidebar sedang di luar layar (punya class translate-x-full)
             if (sidebar.classList.contains('translate-x-full')) {
-                sidebar.classList.remove('translate-x-full');
-                overlay.classList.remove('hidden');
+                // BUKA SIDEBAR
+                sidebar.classList.remove('translate-x-full'); // Masukkan panel ke layar
+                overlay.classList.remove('hidden'); // Munculkan display latar gelap
+                
+                // Beri sedikit jeda waktu (10ms) sebelum opacity dinaikkan agar CSS Transition jalan mulus
                 setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                
+                // Kunci scroll halaman belakang
                 body.style.overflow = 'hidden'; 
             } else {
-                sidebar.classList.add('translate-x-full');
-                overlay.classList.add('opacity-0');
+                // TUTUP SIDEBAR
+                sidebar.classList.add('translate-x-full'); // Keluarkan panel dari layar
+                overlay.classList.add('opacity-0'); // Pudarkan latar gelap (opacity 0)
+                
+                // Setelah durasi animasi selesai (300ms), matikan display latar gelap jadi hidden
                 setTimeout(() => overlay.classList.add('hidden'), 300);
+                
+                // Kembalikan scroll body
                 body.style.overflow = 'auto'; 
             }
         }

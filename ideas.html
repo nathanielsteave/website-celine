@@ -4,21 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Ide Bisnis 2026 | VisioBus</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
+        /* Pengaturan dasar body halaman */
         body { 
             font-family: 'Outfit', sans-serif; 
-            background-color: #020617; 
-            color: #f8fafc; 
-            opacity: 0; 
+            background-color: #020617; /* Warna latar gelap */
+            color: #f8fafc; /* Warna teks terang */
+            opacity: 0; /* Awalnya transparan untuk efek fade-in saat load */
             transition: opacity 0.6s ease; 
-            overflow-x: hidden;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
             width: 100vw;
         }
-        body.loaded { opacity: 1; }
+        body.loaded { opacity: 1; } /* Class ini ditambahkan via JS saat halaman selesai dimuat */
         
+        /* Efek latar belakang berbentuk grid/kotak-kotak transparan */
         .bg-grid {
             background-size: 40px 40px;
             background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
@@ -27,26 +31,32 @@
             -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
         }
 
+        /* Animasi bola bercahaya (blob) di latar belakang */
         .blob { 
             position: absolute; 
             filter: blur(90px); 
             opacity: 0.4; 
             animation: float 10s infinite alternate; 
         }
-        @keyframes float { 0% { transform: translate(0, 0); } 100% { transform: translate(30px, 40px); } }
+        @keyframes float { 
+            0% { transform: translate(0, 0); } 
+            100% { transform: translate(30px, 40px); } 
+        }
 
+        /* Navigasi efek kaca (Glassmorphism) */
         .glass-nav { 
             background: rgba(2, 6, 23, 0.85); 
             backdrop-filter: blur(16px); 
             border-bottom: 1px solid rgba(255,255,255,0.08); 
         }
 
+        /* Styling tombol filter kategori */
         .filter-btn {
             border: 1px solid rgba(255,255,255,0.1);
             background: rgba(30, 41, 59, 0.4);
             color: #94a3b8;
             padding: 0.5rem 1.2rem;
-            border-radius: 9999px;
+            border-radius: 9999px; /* Membuat bentuk kapsul/bulat penuh */
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
@@ -60,6 +70,7 @@
             border-color: rgba(255,255,255,0.2);
             transform: translateY(-2px);
         }
+        /* Kondisi tombol filter saat sedang aktif/dipilih */
         .filter-btn.active {
             background: rgba(34, 211, 238, 0.15);
             color: #22d3ee;
@@ -67,6 +78,7 @@
             box-shadow: 0 0 20px rgba(34, 211, 238, 0.2);
         }
 
+        /* Styling Kartu Ide Bisnis */
         .idea-card { 
             background: rgba(30, 41, 59, 0.4); 
             border: 1px solid rgba(255,255,255,0.08); 
@@ -82,10 +94,12 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
         
+        /* Efek hover untuk masing-masing tema kategori kartu */
         .theme-tech:hover { border-color: rgba(34, 211, 238, 0.6); box-shadow: 0 10px 40px -10px rgba(34, 211, 238, 0.2); transform: translateY(-4px); }
         .theme-creative:hover { border-color: rgba(192, 132, 252, 0.6); box-shadow: 0 10px 40px -10px rgba(192, 132, 252, 0.2); transform: translateY(-4px); }
         .theme-service:hover { border-color: rgba(250, 204, 21, 0.6); box-shadow: 0 10px 40px -10px rgba(250, 204, 21, 0.2); transform: translateY(-4px); }
 
+        /* Label teks kecil di atas judul kartu */
         .category-label {
             font-size: 0.6rem;
             font-weight: 800;
@@ -95,6 +109,7 @@
             display: inline-block;
         }
 
+        /* Animasi Transisi Modal (Popup) */
         #modal-overlay { transition: opacity 0.3s ease; }
         #modal-content { transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .hidden-modal { opacity: 0; pointer-events: none; }
@@ -102,10 +117,12 @@
         .show-modal { opacity: 1; pointer-events: auto; }
         .show-modal #modal-content { transform: scale(1) translateY(0); }
         
-        .hidden-card { display: none; }
+        /* Utility classes untuk fungsi filter dan scrollbar */
+        .hidden-card { display: none; } /* Menyembunyikan kartu yang tidak difilter */
         .fade-in { animation: fadeIn 0.5s ease forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
+        /* Menyembunyikan scrollbar tapi tetap bisa discroll */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -120,7 +137,7 @@
 
     <nav class="fixed w-full z-40 glass-nav">
         <div class="max-w-7xl mx-auto px-5 py-5 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-1 z-50">
+            <a href="index.html" class="text-2xl font-bold tracking-tighter flex items-center gap-0 z-50">
                 Visio<span class="text-cyan-400">Bus</span>26
             </a>
             
@@ -153,6 +170,7 @@
     </div>
 
     <div class="pt-32 pb-20 px-5 max-w-7xl mx-auto flex-grow w-full overflow-x-hidden">
+        
         <header class="mb-10 text-center">
             <h1 class="text-3xl md:text-5xl font-extrabold mb-4">
                 Katalog <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Ide Bisnis 2026</span>
@@ -444,9 +462,51 @@
                         <i class="fas fa-headset"></i>
                     </div>
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Virtual Assistant</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Asisten jarak jauh untuk pemilik bisnis yang sibuk. Kamu menangani manajemen email, jadwal, hingga entri data agar operasional klien berjalan lebih efisien dan mereka bisa fokus mengembangkan bisnis.</p>
+                    <p class="text-slate-400 text-sm leading-relaxed">Asisten jarak jauh untuk pemilik bisnis yang sibuk. Menangani email, jadwal, hingga entri data agar operasional efisien.</p>
                 </div>
                 <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="idea-card theme-tech p-6 rounded-3xl group filter-item tech" onclick="openModal('idp')">
+                <div>
+                    <span class="category-label text-cyan-500">DIGITAL & AI</span>
+                    <div class="bg-cyan-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-cyan-400 text-xl mb-4 border border-cyan-500/20">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">Intelligent Document Processing</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Layanan untuk mengubah dokumen "berantakan" menjadi data digital yang rapi secara otomatis menggunakan AI.</p>
+                </div>
+                <div class="mt-6 text-cyan-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="idea-card theme-service p-6 rounded-3xl group filter-item service" onclick="openModal('personal_brand')">
+                <div>
+                    <span class="category-label text-yellow-500">AFFILIATE & JASA</span>
+                    <div class="bg-yellow-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-yellow-400 text-xl mb-4 border border-yellow-500/20">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-yellow-400 transition-colors">Personal Brand Strategist</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Membantu individu membangun dan mengomunikasikan identitas unik mereka demi mencapai tujuan karier atau bisnis.</p>
+                </div>
+                <div class="mt-6 text-yellow-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
+                    Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+
+            <div class="idea-card theme-creative p-6 rounded-3xl group filter-item creative" onclick="openModal('express_branding')">
+                <div>
+                    <span class="category-label text-purple-500">KREATIF & EDUKASI</span>
+                    <div class="bg-purple-500/10 w-12 h-12 rounded-xl flex items-center justify-center text-purple-400 text-xl mb-4 border border-purple-500/20">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">Express Branding Agency</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Jasa branding instan memadukan keahlian desainer dan AI untuk identitas visual berkualitas tinggi.</p>
+                </div>
+                <div class="mt-6 text-purple-400 text-xs font-bold flex items-center gap-2 group-hover:gap-3 transition-all">
                     Lihat Cara Kerja <i class="fas fa-arrow-right"></i>
                 </div>
             </div>
@@ -456,6 +516,7 @@
 
     <div id="modal-overlay" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 hidden-modal transition-opacity duration-300">
         <div class="absolute inset-0" onclick="closeModal()"></div>
+        
         <div id="modal-content" class="relative bg-slate-900 w-full max-w-lg rounded-2xl border border-slate-700 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 
             <div class="p-6 border-b border-slate-700 bg-slate-800/50 flex justify-between items-start">
@@ -490,13 +551,15 @@
     </div>
 
     <script>
+        // Efek Fade-in saat halaman pertama kali dimuat
         document.addEventListener("DOMContentLoaded", () => document.body.classList.add("loaded"));
 
-        // Filter Logic
+        // FUNGSI FILTER: Menyaring kartu berdasarkan kategori yang dipilih
         function filterSelection(category) {
             const items = document.getElementsByClassName("filter-item");
             const btns = document.getElementsByClassName("filter-btn");
 
+            // Update style tombol filter (menandai tombol yang sedang aktif)
             for (let i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
                 if (btns[i].getAttribute("onclick").includes(category)) {
@@ -504,6 +567,7 @@
                 }
             }
 
+            // Tampilkan/Sembunyikan kartu sesuai kategori
             for (let i = 0; i < items.length; i++) {
                 if (category === "all" || items[i].classList.contains(category)) {
                     items[i].classList.remove("hidden-card");
@@ -515,7 +579,7 @@
             }
         }
 
-        // Data Ide Bisnis
+        // DATABASE IDE BISNIS: Semua data konten modal tersimpan di sini
         const ideasData = {
             "ai_strategist": {
                 title: "AI Content Strategist",
@@ -579,7 +643,7 @@
             },
             "edu_creator": {
                 title: "Edu Creator",
-                tag: "KREATIF",
+                tag: "KREATIF & EDUKASI",
                 desc: "Istilahnya 'Productize Yourself'. Ubah keterampilan spesifikmu menjadi produk digital (E-book, Course, Template) yang bisa dijual berkali-kali tanpa biaya produksi ulang.",
                 steps: [
                     "Identifikasi skill (misal: Excel, Coding, Masak).",
@@ -591,7 +655,7 @@
             },
             "ghost": {
                 title: "Ghost Producer",
-                tag: "KREATIF",
+                tag: "KREATIF & EDUKASI",
                 desc: "Menjadi produser di balik layar untuk teman atau klien yang ahli di bidangnya tapi malu di depan kamera. Kamu yang mengurus strategi dan kontennya.",
                 steps: [
                     "Cari expert (Dokter/Pengacara) yang sosmednya sepi.",
@@ -603,7 +667,7 @@
             },
             "youtuber": {
                 title: "YouTuber 2026",
-                tag: "KREATIF",
+                tag: "KREATIF & EDUKASI",
                 desc: "Algoritma YouTube Homepage sekarang memprioritaskan kreator kecil yang relevan. Ini kesempatan emas untuk membangun hubungan personal dengan audiens dan mendapat AdSense.",
                 steps: [
                     "Pilih topik spesifik yang kamu suka.",
@@ -761,9 +825,47 @@
                     "Buat profil profesional di platform kerja freelance."
                 ],
                 tools: ["Google Workspace", "Trello", "Slack"]
+            },
+            "idp": {
+                title: "Intelligent Document Processing",
+                tag: "DIGITAL & AI",
+                desc: "Layanan untuk mengubah dokumen 'berantakan' (seperti scan PDF, nota, atau kontrak) menjadi data digital yang rapi secara otomatis menggunakan AI.",
+                steps: [
+                    "Pelajari cara kerja OCR dan NLP",
+                    "Pilih fokusmu, misalnya keuangan, perbankan, atau Kontrak Hukum.",
+                    "Bangun 3-5 sistem percontohan",
+                    "Jual solusi 10x lebih cepat ke bisnis yang masih input data manual"
+                ],
+                tools: ["Google Document AI", "UiPath", "ABBYY"]
+            },
+            "personal_brand": {
+                title: "Personal Brand Strategist",
+                tag: "AFFILIATE & JASA",
+                desc: "Jasa profesional yang membantu individu—seperti eksekutif, pengusaha, atau kreator konten—untuk membangun, dan mengomunikasikan identitas unik mereka demi mencapai tujuan karier atau bisnis.",
+                steps: [
+                    "Bangun 'Social Proof' (Merek Pribadi Sendiri)",
+                    "Kuasai Keterampilan Strategis",
+                    "Ciptakan Paket Layanan & Portofolio",
+                    "Cari Klien Melalui Jaringan & Platform",
+                    "Konsistensi dan Evaluasi"
+                ],
+                tools: ["LinkedIn", "Hootsuite", "Graphic design tools"]
+            },
+            "express_branding": {
+                title: "Express Branding Agency",
+                tag: "KREATIF & EDUKASI",
+                desc: "Jasa branding instan yang memadukan keahlian desainer profesional dan kekuatan AI untuk menciptakan identitas visual lengkap (logo, palet warna, tipografi) dengan cepat dan berkualitas tinggi untuk usaha kecil dan UMKM.",
+                steps: [
+                    "Buat ringkasan merek singkat tentang jenis usaha dan preferensi gaya.",
+                    "Desainer berbantuan AI menghasilkan 3 konsep awal.",
+                    "Pilih satu konsep.",
+                    "Terima paket lengkap identitas merek (file logo vektor, palet warna, panduan gaya tipografi)."
+                ],
+                tools: ["Adobe", "Midjourney", "Canva"]
             }
         };
 
+        // Menangkap elemen DOM (HTML) untuk Modal
         const modalOverlay = document.getElementById('modal-overlay');
         const mTitle = document.getElementById('m-title');
         const mTag = document.getElementById('m-tag');
@@ -771,57 +873,70 @@
         const mSteps = document.getElementById('m-steps');
         const mTools = document.getElementById('m-tools');
 
+        // FUNGSI MEMBUKA MODAL
         function openModal(id) {
-            const data = ideasData[id];
-            if(!data) return;
+            const data = ideasData[id]; // Mengambil data berdasarkan ID kartu yang diklik
+            if(!data) return; // Jika data tidak ada, hentikan fungsi
+            
+            // Menyuntikkan data ke dalam elemen HTML modal
             mTitle.innerText = data.title;
             mTag.innerText = data.tag;
             mDesc.innerText = data.desc;
+            
+            // Melakukan mapping data array ke dalam format list HTML <li>
             mSteps.innerHTML = data.steps.map(step => 
                 `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-cyan-500 mt-1"></i> <span>${step}</span></li>`
             ).join('');
+            
+            // Melakukan mapping data array ke dalam format badge HTML <span>
             mTools.innerHTML = data.tools.map(tool => 
                 `<span class="bg-slate-800 text-slate-300 px-3 py-1 rounded text-xs border border-slate-700">${tool}</span>`
             ).join('');
+            
+            // Menampilkan modal dan mengunci scroll di body latar belakang
             modalOverlay.classList.remove('hidden-modal');
             modalOverlay.classList.add('show-modal');
             document.body.style.overflow = 'hidden';
         }
 
+        // FUNGSI MENUTUP MODAL
         function closeModal() {
             modalOverlay.classList.remove('show-modal');
             modalOverlay.classList.add('hidden-modal');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'auto'; // Mengembalikan fungsi scroll
         }
 
-        // Page Transition
+        // FUNGSI TRANSISI HALAMAN
+        // Menambahkan efek fade-out saat link diklik (kecuali link anchor '#')
         document.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', e => {
                 if(link.getAttribute('href') && !link.getAttribute('href').startsWith('#')) {
                     e.preventDefault();
                     const target = link.href;
-                    document.body.style.opacity = 0;
-                    setTimeout(() => window.location.href = target, 500);
+                    document.body.style.opacity = 0; // Efek fade out
+                    setTimeout(() => window.location.href = target, 500); // Pindah halaman setelah animasi selesai
                 }
             });
         });
 
-        // Sidebar Toggle
+        // FUNGSI TOGGLE SIDEBAR MOBILE
         function toggleSidebar() {
             const sidebar = document.getElementById('mobile-sidebar');
             const overlay = document.getElementById('sidebar-overlay');
             const body = document.body;
             
             if (sidebar.classList.contains('translate-x-full')) {
+                // Membuka Sidebar
                 sidebar.classList.remove('translate-x-full');
                 overlay.classList.remove('hidden');
                 setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-                body.style.overflow = 'hidden'; 
+                body.style.overflow = 'hidden'; // Kunci scroll di halaman belakang
             } else {
+                // Menutup Sidebar
                 sidebar.classList.add('translate-x-full');
                 overlay.classList.add('opacity-0');
                 setTimeout(() => overlay.classList.add('hidden'), 300);
-                body.style.overflow = 'auto'; 
+                body.style.overflow = 'auto'; // Kembalikan scroll
             }
         }
     </script>
